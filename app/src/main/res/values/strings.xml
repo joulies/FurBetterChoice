@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FurBetterChoice</string>
+    <string name="hello_username">Hello Username!</string>
+    <string name="make_better_choices">Make better choices</string>
+    <string name="subtitle_home">Let\'s find the best food for your pet.</string>
+    <string name="scan_now">SCAN\nNOW</string>
+</resources>

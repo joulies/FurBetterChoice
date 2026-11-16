@@ -1,0 +1,109 @@
+<mxfile host="app.diagrams.net" modified="2026-11-12T00:00:00.000Z" agent="FurBetterChoice" version="24.0.0" type="device">
+  <diagram id="figure_8_hierarchical_navigation_map" name="Figure 8: Hierarchical Navigation Map">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="860" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Launch -->
+        <mxCell id="f8_launch" value="App Launch" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="340" y="30" width="180" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Auth Check -->
+        <mxCell id="f8_auth_q" value="User Role /&#xa;Auth Status?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="340" y="105" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_auth_scr" value="AuthScreens&#xa;(Login / Sign Up / Verify Email)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="40" y="117" width="230" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Main Dashboard -->
+        <mxCell id="f8_dash" value="MainDashboard &amp; FloatingBottomNav&#xa;(4 Bottom Tabs: Home | Profile | Community | Settings)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="210" y="225" width="440" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Group 1: Guest & Authenticated Accessible Tabs (Left Zone - Flat parent=1) -->
+        <mxCell id="f8_grp_guest" value="Accessible to Both Guest &amp; Authenticated Users" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F9F5;strokeColor=#2E7D5B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=8;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#1B4D36;" vertex="1" parent="1">
+          <mxGeometry x="30" y="325" width="370" height="295" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_t_home" value="Home Tab&#xa;(MainDashboard)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="50" y="370" width="155" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_t_set" value="Settings Tab&#xa;(SettingsScreen)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="225" y="370" width="155" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_scan" value="ProductScanner&#xa;(CameraX Barcode)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="50" y="460" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_set_opts" value="Theme Mode, Account&#xa;&amp; Login / Sign Out" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="225" y="460" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_hist" value="RecentHistoryScreen&#xa;(Past Scanned Foods)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="50" y="545" width="155" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Group 2: Authenticated Pet Parent Only Tabs (Right Zone - Flat parent=1) -->
+        <mxCell id="f8_grp_user" value="Authenticated Pet Parent Only (Prompts Login for Guests)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF5;strokeColor=#D4A017;strokeWidth=2;verticalAlign=top;align=center;spacingTop=8;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#7A5900;" vertex="1" parent="1">
+          <mxGeometry x="430" y="325" width="400" height="295" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_t_prof" value="Profile Tab&#xa;(ProfileScreen)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="460" y="370" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_t_comm" value="Community Tab&#xa;(FeedbackScreen)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="645" y="370" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_pets" value="MyPetsScreen &amp;&#xa;PetProfileDialog" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="445" y="460" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_saved" value="SavedScreen&#xa;(Saved Wishlist)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="595" y="460" width="115" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_contrib" value="Contribute Product&#xa;&amp; Label Photos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="720" y="460" width="95" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f8_suit" value="SuitableFoodScreen&#xa;(Ranked Safe Foods)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="445" y="545" width="140" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Core Destination: ProductAnalysisScreen -->
+        <mxCell id="f8_ana" value="ProductAnalysisScreen&#xa;• Guest &amp; User: Description, FEDIAF &amp; AAFCO, Ingredients, Eco Packaging, Smarter Alternatives&#xa;• Authenticated Only: Personalized Pet Allergen Glow Alerts, Save to Wishlist, Post Reviews" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="90" y="665" width="680" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Compare Destination -->
+        <mxCell id="f8_comp" value="CompareScreen (Authenticated Only)&#xa;Side-by-Side Nutritional &amp; Eco Matrix of 2-3 Pet Foods" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="220" y="785" width="420" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Navigation Edges -->
+        <mxCell id="f8_e1" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_launch" target="f8_auth_q"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_e2" value="Sign In / Register" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_auth_q" target="f8_auth_scr"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_e3" value="Continue (Guest or Logged In)" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_auth_q" target="f8_dash"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_e4" value="Auth Success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="f8_auth_scr" target="f8_dash"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Dash to Role Zones -->
+        <mxCell id="f8_z1" value="Guest User Access&#xa;(Home &amp; Settings Only)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f8_dash" target="f8_grp_guest"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_z2" value="Authenticated User Access&#xa;(Unlocks Profile &amp; Community)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f8_dash" target="f8_grp_user"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Inside Guest Zone -->
+        <mxCell id="f8_s1" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_t_home" target="f8_scan"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_s2" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_scan" target="f8_hist"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_s3" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_t_set" target="f8_set_opts"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Inside Authenticated Zone -->
+        <mxCell id="f8_s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.3;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f8_t_prof" target="f8_pets"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_s5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.7;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f8_t_prof" target="f8_saved"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_s6" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_pets" target="f8_suit"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_s7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f8_t_comm" target="f8_contrib"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- To ProductAnalysisScreen -->
+        <mxCell id="f8_a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.18;entryY=0;" edge="1" parent="1" source="f8_hist" target="f8_ana"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.55;entryY=0;" edge="1" parent="1" source="f8_suit" target="f8_ana"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f8_a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="f8_saved" target="f8_ana"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- To CompareScreen -->
+        <mxCell id="f8_c1" value="Compare 2-3 Saved Products (Authenticated Only)" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f8_ana" target="f8_comp"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

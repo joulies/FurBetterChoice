@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FurBetterChoice — Capstone Diagrams (Clean Draw.io &amp; Portrait)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #eef3f1;
+            color: #111111;
+            margin: 0;
+            padding: 24px;
+        }
+        .header {
+            max-width: 780px;
+            margin: 0 auto 24px auto;
+            background: #ffffff;
+            padding: 22px 26px;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            border-left: 6px solid #2e7d5b;
+        }
+        .header h1 {
+            margin: 0 0 8px 0;
+            color: #1e5c3d;
+            font-size: 21px;
+        }
+        .header p {
+            margin: 5px 0;
+            color: #333;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        .badge {
+            display: inline-block;
+            background: #e8f5ee;
+            color: #2e7d5b;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+        .master-bar {
+            max-width: 780px;
+            margin: 0 auto 24px auto;
+            background: #2e7d5b;
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(46,125,91,0.25);
+        }
+        .master-bar h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+        .master-bar p {
+            margin: 3px 0 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .a4-card {
+            width: 740px;
+            max-width: 100%;
+            margin: 0 auto 32px auto;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            border: 1px solid #d8e4df;
+        }
+        .diagram-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eef3f1;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .diagram-header h2 {
+            margin: 0;
+            font-size: 16px;
+            color: #111;
+        }
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #2e7d5b;
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn:hover {
+            background: #236348;
+            transform: translateY(-1px);
+        }
+        .btn-drawio {
+            background: #d48806;
+        }
+        .btn-drawio:hover {
+            background: #b57304;
+        }
+        .btn-outline {
+            background: #ffffff;
+            color: #2e7d5b;
+            border: 1.5px solid #2e7d5b;
+        }
+        .btn-outline:hover {
+            background: #e8f5ee;
+        }
+        .btn-secondary {
+            background: #374151;
+        }
+        .btn-secondary:hover {
+            background: #1f2937;
+        }
+        .diagram-box {
+            background: #ffffff;
+            padding: 16px 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            overflow-x: auto;
+        }
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        .diagram-desc {
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: #f4f9f6;
+            border-left: 4px solid #2e7d5b;
+            border-radius: 6px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #1f2937;
+        }
+        .diagram-desc strong {
+            color: #1e5c3d;
+        }
+        .meta-tabs {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            border-top: 1px solid #eef3f1;
+            padding-top: 12px;
+        }
+        .code-drawer {
+            margin-top: 10px;
+            background: #f8faf9;
+            border: 1px solid #d8e4df;
+            border-radius: 8px;
+            padding: 12px;
+            display: none;
+        }
+        .code-drawer pre {
+            margin: 0;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 11.5px;
+            max-height: 200px;
+            overflow-y: auto;
+            color: #2c3e36;
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e5c3d;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+<div id="toast" class="toast">Copied high-resolution PNG to clipboard! Press Ctrl+V in Word.</div>
+
+<div class="header">
+    <h1>🐾 FurBetterChoice — Clean Editable Capstone Diagrams</h1>
+    <p><span class="badge">USER-ONLY ROLES</span><span class="badge">100% FIREBASE CLOUD FIRESTORE</span><span class="badge">CLEAN DRAW.IO IMPORT</span></p>
+    <p>• <strong>User-Centric Scope:</strong> Focused exclusively on <strong>Guest Users</strong> and <strong>Registered Pet Parents</strong> backed by Firebase Authentication and Cloud Firestore.</p>
+    <p>• <strong>Clean Draw.io Import:</strong> Uses flat <code>parent="1"</code> native cells, native Draw.io line breaks (<code>&amp;#xa;</code>), and explicit orthogonal waypoints so text and arrows never overlap.</p>
+</div>
+
+<div class="master-bar">
+    <div>
+        <h3>📦 Master Diagrams Package (.drawio)</h3>
+        <p>Contains all 8 clean, editable figures as separate tabs in a single Draw.io project file.</p>
+    </div>
+    <div class="btn-group">
+        <a class="btn btn-outline" style="background:#fff; color:#1e5c3d;" href="FurBetterChoice_All_Diagrams.drawio" download="FurBetterChoice_All_Diagrams.drawio">Download All (.drawio)</a>
+        <button class="btn btn-secondary" onclick="openAllInDrawio()">Open diagrams.net</button>
+    </div>
+</div>
+
+<!-- Figure 1: Context Diagram (DFD Level 0) -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 1: Context Diagram (DFD Level 0)</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag1', 'Figure_1_Context_Diagram')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag1', 'Figure_1_Context_Diagram')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_1_Context_Diagram.drawio" download="Figure_1_Context_Diagram.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag1_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag1">
+        <pre class="mermaid">
+flowchart TD
+    Guest["Guest User<br/>(Unregistered Visitor)"]
+    User["Registered Pet Parent<br/>(Authenticated User)"]
+
+    System(("0<br/>FurBetterChoice<br/>Mobile System"))
+
+    Firebase[("Firebase Cloud Backend<br/>(Auth &amp; Cloud Firestore)")]
+
+    Guest -->|"1. Barcode Scan / Search Query"| System
+    System -.->|"2. FEDIAF/AAFCO &amp; Ingredient Report"| Guest
+
+    User -->|"3. Login, Pet Profiles, Allergies &amp; Reviews"| System
+    System -.->|"4. Allergen Alerts, Suitability &amp; Comparison"| User
+
+    System <-->|"5. User/Pet Docs, Catalog, Contributions &amp; Reviews"| Firebase
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Illustrates the high-level system boundary and external interactions of the FurBetterChoice mobile application. Guest Users and Registered Pet Parents submit barcode scans, pet profiles, allergies, and product reviews, while the system communicates with the Firebase Cloud Backend (Authentication &amp; Cloud Firestore) to deliver FEDIAF/AAFCO nutritional assessments, allergen alerts, and product comparisons.
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag1_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag1_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag1_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag1_xml_drawer" class="code-drawer">
+        <textarea id="diag1_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_1_context_diagram_dfd_level_0&quot; name=&quot;Figure 1: Context Diagram (DFD Level 0)&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;850&quot; pageHeight=&quot;780&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Top External Entities (Users Only) --&gt;
+        &lt;mxCell id=&quot;f1_guest&quot; value=&quot;Guest User&amp;#xa;(Unregistered Visitor)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;60&quot; width=&quot;240&quot; height=&quot;70&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f1_user&quot; value=&quot;Registered Pet Parent&amp;#xa;(Authenticated User)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;60&quot; width=&quot;240&quot; height=&quot;70&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Central Process 0 --&gt;
+        &lt;mxCell id=&quot;f1_sys&quot; value=&quot;0&amp;#xa;FurBetterChoice&amp;#xa;Mobile System&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;300&quot; y=&quot;320&quot; width=&quot;220&quot; height=&quot;130&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Bottom Cloud Services (Centered) --&gt;
+        &lt;mxCell id=&quot;f1_fb&quot; value=&quot;Firebase Cloud Backend&amp;#xa;(Firebase Auth &amp;amp; Cloud Firestore)&quot; style=&quot;shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=14;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;270&quot; y=&quot;620&quot; width=&quot;280&quot; height=&quot;90&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Clean Orthogonal Non-Overlapping Edges with explicit waypoints --&gt;
+        &lt;!-- Guest -&gt; System (Left outer channel) --&gt;
+        &lt;mxCell id=&quot;f1_e1&quot; value=&quot;1. Barcode Scan / Search Query&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=0;entryY=0.3;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f1_guest&quot; target=&quot;f1_sys&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;140&quot; y=&quot;359&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- System -&gt; Guest (Left inner channel) --&gt;
+        &lt;mxCell id=&quot;f1_e2&quot; value=&quot;2. FEDIAF/AAFCO &amp;amp; Ingredient Report&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;exitX=0.2;exitY=0.1;entryX=0.75;entryY=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f1_sys&quot; target=&quot;f1_guest&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;344&quot; y=&quot;210&quot; /&gt;
+              &lt;mxPoint x=&quot;260&quot; y=&quot;210&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Registered User -&gt; System (Right inner channel) --&gt;
+        &lt;mxCell id=&quot;f1_e3&quot; value=&quot;3. Login, Pet Profiles, Allergies &amp;amp; Reviews&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=0.8;entryY=0.1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f1_user&quot; target=&quot;f1_sys&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;560&quot; y=&quot;210&quot; /&gt;
+              &lt;mxPoint x=&quot;476&quot; y=&quot;210&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- System -&gt; Registered User (Right outer channel) --&gt;
+        &lt;mxCell id=&quot;f1_e4&quot; value=&quot;4. Allergen Alerts, Suitability &amp;amp; Comparison&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.3;entryX=0.75;entryY=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f1_sys&quot; target=&quot;f1_user&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;680&quot; y=&quot;359&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- System &lt;-&gt; Firebase (Center Bottom channel) --&gt;
+        &lt;mxCell id=&quot;f1_e5&quot; value=&quot;5. User/Pet Records, Food Catalog, Contributions &amp;amp; Reviews&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f1_sys&quot; target=&quot;f1_fb&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag1_mm_drawer" class="code-drawer">
+        <pre>flowchart TD
+    Guest["Guest User<br/>(Unregistered Visitor)"]
+    User["Registered Pet Parent<br/>(Authenticated User)"]
+
+    System(("0<br/>FurBetterChoice<br/>Mobile System"))
+
+    Firebase[("Firebase Cloud Backend<br/>(Auth &amp; Cloud Firestore)")]
+
+    Guest -->|"1. Barcode Scan / Search Query"| System
+    System -.->|"2. FEDIAF/AAFCO &amp; Ingredient Report"| Guest
+
+    User -->|"3. Login, Pet Profiles, Allergies &amp; Reviews"| System
+    System -.->|"4. Allergen Alerts, Suitability &amp; Comparison"| User
+
+    System <-->|"5. User/Pet Docs, Catalog, Contributions &amp; Reviews"| Firebase</pre>
+    </div>
+</div>
+
+<!-- Figure 2: Data Flow Diagram (DFD Level 1) -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 2: Data Flow Diagram (DFD Level 1)</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag2', 'Figure_2_DFD_Level_1')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag2', 'Figure_2_DFD_Level_1')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_2_DFD_Level_1.drawio" download="Figure_2_DFD_Level_1.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag2_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag2">
+        <pre class="mermaid">
+flowchart TD
+    User["Pet Parent (User)<br/>Guest or Registered User"]
+
+    P1(["1.0 Auth &amp; Profile Management<br/>Accounts, Pet Profiles, Allergies"])
+    D1[("D1: users &amp; pets<br/>Firestore User &amp; Pet Profiles")]
+
+    P2(["2.0 Barcode Scan &amp; Catalog Lookup<br/>CameraX ML Kit &amp; Firestore Query"])
+    D2[("D2: products &amp; brands<br/>Firestore Pet Food Catalog")]
+
+    P3(["3.0 Nutritional Assessment &amp; Allergen Engine<br/>FEDIAF/AAFCO DM% Calc, Ca:P &amp; Allergy Match"])
+
+    P4(["4.0 Personalized Food Recommender<br/>Filter Safe &amp; Compatible Alternatives"])
+
+    P5(["5.0 Saved Wishlist &amp; Comparison Matrix<br/>Side-by-Side Nutrient &amp; Eco Matrix"])
+    D3[("D3: saved_products<br/>User Saved Wishlist Items")]
+
+    P6(["6.0 Community Contributions &amp; Reviews<br/>Submit Missing Foods, Photos &amp; Ratings"])
+    D4[("D4: contributions &amp; reviews<br/>Community Submissions &amp; Ratings")]
+
+    User -->|"1. Credentials &amp; Pet Info"| P1
+    P1 <-->|"User &amp; Pet Docs"| D1
+
+    P1 -->|"2. Active Session"| P2
+    P2 <-->|"Barcode / Name Lookup"| D2
+
+    P2 -->|"3. Product &amp; Nutrient Data"| P3
+    D1 -->|"Pet Allergies &amp; Life Stage"| P3
+    P3 -.->|"Nutrition &amp; Allergy Report"| User
+
+    P3 -->|"4. Evaluation &amp; Safety Flags"| P4
+    D2 -->|"Catalog Candidates"| P4
+
+    P4 -->|"5. Selected Products"| P5
+    P5 <-->|"Saved Wishlist Sync"| D3
+
+    P5 -->|"6. Feedback / Missing Barcode"| P6
+    P6 -->|"Store Photos &amp; Reviews"| D4
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Breaks down the system into six core functional processes (1.0 Auth &amp; Profile Management, 2.0 Barcode Scan &amp; Catalog Lookup, 3.0 Nutritional Assessment &amp; Allergen Engine, 4.0 Personalized Food Recommender, 5.0 Saved Wishlist &amp; Comparison Matrix, and 6.0 Community Contributions &amp; Reviews) and maps how data flows between Pet Parents (Users) and the four Cloud Firestore data stores (D1–D4).
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag2_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag2_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag2_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag2_xml_drawer" class="code-drawer">
+        <textarea id="diag2_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_2_data_flow_diagram_dfd_level_1&quot; name=&quot;Figure 2: Data Flow Diagram (DFD Level 1)&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;880&quot; pageHeight=&quot;1020&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Top External Entity (User Only) --&gt;
+        &lt;mxCell id=&quot;f2_user&quot; value=&quot;Pet Parent (User)&amp;#xa;Guest or Registered User&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;40&quot; width=&quot;280&quot; height=&quot;65&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Row 1: Process 1.0 &amp; Data Store D1 --&gt;
+        &lt;mxCell id=&quot;f2_p1&quot; value=&quot;1.0 Auth &amp;amp; Profile Management&amp;#xa;(Accounts, Pet Profiles, Allergies)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;170&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f2_d1&quot; value=&quot;D1: users &amp;amp; pets&amp;#xa;(Firestore User &amp;amp; Pet Profiles)&quot; style=&quot;shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;520&quot; y=&quot;170&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Row 2: Process 2.0 &amp; Data Store D2 --&gt;
+        &lt;mxCell id=&quot;f2_p2&quot; value=&quot;2.0 Barcode Scan &amp;amp; Catalog Lookup&amp;#xa;(CameraX ML Kit &amp;amp; Firestore Query)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;310&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f2_d2&quot; value=&quot;D2: products &amp;amp; brands&amp;#xa;(Firestore Pet Food Catalog)&quot; style=&quot;shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;520&quot; y=&quot;310&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Row 3: Process 3.0 (Evaluation Engine) --&gt;
+        &lt;mxCell id=&quot;f2_p3&quot; value=&quot;3.0 Nutritional Assessment &amp;amp; Allergen Engine&amp;#xa;(FEDIAF/AAFCO DM% Calc, Ca:P &amp;amp; Allergy Match)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;450&quot; width=&quot;280&quot; height=&quot;80&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Row 4: Process 4.0 (Recommender) --&gt;
+        &lt;mxCell id=&quot;f2_p4&quot; value=&quot;4.0 Personalized Food Recommender&amp;#xa;(Filter Safe &amp;amp; Compatible Alternatives)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;590&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Row 5: Process 5.0 &amp; Data Store D3 --&gt;
+        &lt;mxCell id=&quot;f2_p5&quot; value=&quot;5.0 Saved Wishlist &amp;amp; Comparison Matrix&amp;#xa;(Side-by-Side Nutrient &amp;amp; Eco Matrix)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;730&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f2_d3&quot; value=&quot;D3: saved_products&amp;#xa;(User Saved Wishlist Items)&quot; style=&quot;shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;520&quot; y=&quot;730&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Row 6: Process 6.0 &amp; Data Store D4 --&gt;
+        &lt;mxCell id=&quot;f2_p6&quot; value=&quot;6.0 Community Contributions &amp;amp; Reviews&amp;#xa;(Submit Missing Foods, Photos &amp;amp; Ratings)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;120&quot; y=&quot;870&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f2_d4&quot; value=&quot;D4: contributions &amp;amp; reviews&amp;#xa;(Community Submissions &amp;amp; Ratings)&quot; style=&quot;shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;520&quot; y=&quot;870&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Clean Non-Crossing Connectors --&gt;
+        &lt;!-- User -&gt; P1 --&gt;
+        &lt;mxCell id=&quot;f2_e1&quot; value=&quot;1. Credentials &amp;amp; Pet Info&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_user&quot; target=&quot;f2_p1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;!-- P1 &lt;-&gt; D1 --&gt;
+        &lt;mxCell id=&quot;f2_e2&quot; value=&quot;User &amp;amp; Pet Docs&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p1&quot; target=&quot;f2_d1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- P1 -&gt; P2 (Left Spine Flow) --&gt;
+        &lt;mxCell id=&quot;f2_e3&quot; value=&quot;2. Active User Session&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p1&quot; target=&quot;f2_p2&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;!-- P2 &lt;-&gt; D2 --&gt;
+        &lt;mxCell id=&quot;f2_e4&quot; value=&quot;Barcode / Name Lookup&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p2&quot; target=&quot;f2_d2&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- P2 -&gt; P3 --&gt;
+        &lt;mxCell id=&quot;f2_e5&quot; value=&quot;3. Product &amp;amp; Nutrient Data&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p2&quot; target=&quot;f2_p3&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;!-- D1 -&gt; P3 (Pet Allergies routed cleanly via x=460) --&gt;
+        &lt;mxCell id=&quot;f2_e6&quot; value=&quot;Pet Allergies &amp;amp; Life Stage&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=1;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_d1&quot; target=&quot;f2_p3&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;590&quot; y=&quot;275&quot; /&gt;
+              &lt;mxPoint x=&quot;460&quot; y=&quot;275&quot; /&gt;
+              &lt;mxPoint x=&quot;460&quot; y=&quot;490&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- P3 -&gt; P4 --&gt;
+        &lt;mxCell id=&quot;f2_e7&quot; value=&quot;4. Evaluation &amp;amp; Safety Flags&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p3&quot; target=&quot;f2_p4&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;!-- D2 -&gt; P4 (Catalog items routed via x=660) --&gt;
+        &lt;mxCell id=&quot;f2_e8&quot; value=&quot;Catalog Candidates&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=1;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_d2&quot; target=&quot;f2_p4&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;660&quot; y=&quot;627&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- P4 -&gt; P5 --&gt;
+        &lt;mxCell id=&quot;f2_e9&quot; value=&quot;5. Selected Products to Compare&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p4&quot; target=&quot;f2_p5&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;!-- P5 &lt;-&gt; D3 --&gt;
+        &lt;mxCell id=&quot;f2_e10&quot; value=&quot;Saved Wishlist Sync&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p5&quot; target=&quot;f2_d3&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- P5 -&gt; P6 --&gt;
+        &lt;mxCell id=&quot;f2_e11&quot; value=&quot;6. Product Feedback / Missing Barcode&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p5&quot; target=&quot;f2_p6&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;!-- P6 -&gt; D4 --&gt;
+        &lt;mxCell id=&quot;f2_e12&quot; value=&quot;Store Photos &amp;amp; Reviews&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p6&quot; target=&quot;f2_d4&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Left Return Channel to User (Reports &amp; Matrices) --&gt;
+        &lt;mxCell id=&quot;f2_e13&quot; value=&quot;Nutritional Report, Allergen Glow &amp;amp; Matrix&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f2_p3&quot; target=&quot;f2_user&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;50&quot; y=&quot;490&quot; /&gt;
+              &lt;mxPoint x=&quot;50&quot; y=&quot;72&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag2_mm_drawer" class="code-drawer">
+        <pre>flowchart TD
+    User["Pet Parent (User)<br/>Guest or Registered User"]
+
+    P1(["1.0 Auth &amp; Profile Management<br/>Accounts, Pet Profiles, Allergies"])
+    D1[("D1: users &amp; pets<br/>Firestore User &amp; Pet Profiles")]
+
+    P2(["2.0 Barcode Scan &amp; Catalog Lookup<br/>CameraX ML Kit &amp; Firestore Query"])
+    D2[("D2: products &amp; brands<br/>Firestore Pet Food Catalog")]
+
+    P3(["3.0 Nutritional Assessment &amp; Allergen Engine<br/>FEDIAF/AAFCO DM% Calc, Ca:P &amp; Allergy Match"])
+
+    P4(["4.0 Personalized Food Recommender<br/>Filter Safe &amp; Compatible Alternatives"])
+
+    P5(["5.0 Saved Wishlist &amp; Comparison Matrix<br/>Side-by-Side Nutrient &amp; Eco Matrix"])
+    D3[("D3: saved_products<br/>User Saved Wishlist Items")]
+
+    P6(["6.0 Community Contributions &amp; Reviews<br/>Submit Missing Foods, Photos &amp; Ratings"])
+    D4[("D4: contributions &amp; reviews<br/>Community Submissions &amp; Ratings")]
+
+    User -->|"1. Credentials &amp; Pet Info"| P1
+    P1 <-->|"User &amp; Pet Docs"| D1
+
+    P1 -->|"2. Active Session"| P2
+    P2 <-->|"Barcode / Name Lookup"| D2
+
+    P2 -->|"3. Product &amp; Nutrient Data"| P3
+    D1 -->|"Pet Allergies &amp; Life Stage"| P3
+    P3 -.->|"Nutrition &amp; Allergy Report"| User
+
+    P3 -->|"4. Evaluation &amp; Safety Flags"| P4
+    D2 -->|"Catalog Candidates"| P4
+
+    P4 -->|"5. Selected Products"| P5
+    P5 <-->|"Saved Wishlist Sync"| D3
+
+    P5 -->|"6. Feedback / Missing Barcode"| P6
+    P6 -->|"Store Photos &amp; Reviews"| D4</pre>
+    </div>
+</div>
+
+<!-- Figure 3: System Architecture Diagram (MVVM) -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 3: System Architecture Diagram (MVVM)</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag3', 'Figure_3_System_Architecture')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag3', 'Figure_3_System_Architecture')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_3_System_Architecture.drawio" download="Figure_3_System_Architecture.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag3_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag3">
+        <pre class="mermaid">
+flowchart TD
+    subgraph L1 ["1. Presentation Layer (Jetpack Compose UI)"]
+        direction TB
+        U1["ProductScanner | MainDashboard | ProductAnalysisScreen"]
+        U2["MyPetsScreen | SuitableFoodScreen | CompareScreen | Profile &amp; Settings"]
+    end
+
+    subgraph L2 ["2. State &amp; ViewModel Layer"]
+        direction TB
+        VM["AppViewModel (Kotlin Coroutines + StateFlow Observables)<br/>ProductUIState, PetListState, AuthState, SavedState &amp; CompareState"]
+    end
+
+    subgraph L3 ["3. Nutritional Assessment &amp; Domain Evaluation Layer"]
+        direction TB
+        D1["NutritionAssessmentEngine (FEDIAF) &amp; AafcoAssessmentEngine (AAFCO)"]
+        D2["ScoringSystem | IngredientAnalyzer | FoodRecommender"]
+    end
+
+    subgraph L4 ["4. Data &amp; Repository Layer"]
+        direction TB
+        R1["ProductRepository (Barcode, ID &amp; Search Queries)"]
+        R2["FirestoreRepository (Users, Pets, Saved, Reviews, Contributions &amp; Brands)"]
+    end
+
+    subgraph L5 ["5. Device Hardware &amp; Cloud Services"]
+        direction TB
+        C1["CameraX + Google ML Kit (On-Device Barcode Vision)"]
+        C2["Firebase Authentication &amp; Cloud Firestore NoSQL DB"]
+    end
+
+    L1 <==>|"UI Events &amp; StateFlow"| L2
+    L2 <==>|"Evaluates Nutrients &amp; Allergies"| L3
+    L3 <==>|"Repository Data Requests"| L4
+    L4 <==>|"Cloud Sync &amp; Auth"| L5
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Depicts the 5-tier Model-View-ViewModel (MVVM) software architecture of the Android application. It connects the Jetpack Compose Presentation Layer (Layer 1) to the Kotlin Coroutines &amp; StateFlow AppViewModel (Layer 2), the FEDIAF/AAFCO Nutritional Assessment &amp; Allergen Domain Engines (Layer 3), the Repository Data Layer (Layer 4), and on-device CameraX/ML Kit hardware alongside Firebase Cloud Services (Layer 5).
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag3_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag3_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag3_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag3_xml_drawer" class="code-drawer">
+        <textarea id="diag3_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_3_system_architecture_diagram_mvvm&quot; name=&quot;Figure 3: System Architecture Diagram (MVVM)&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;860&quot; pageHeight=&quot;950&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Layer 1 Background &amp; Header --&gt;
+        &lt;mxCell id=&quot;f3_l1_bg&quot; value=&quot;1. Presentation Layer (Jetpack Compose UI)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;40&quot; width=&quot;740&quot; height=&quot;150&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_u1&quot; value=&quot;ProductScanner&amp;#xa;(CameraX &amp;amp; ML Kit)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;82&quot; width=&quot;220&quot; height=&quot;44&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_u2&quot; value=&quot;MainDashboard&amp;#xa;(Search &amp;amp; History)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;320&quot; y=&quot;82&quot; width=&quot;220&quot; height=&quot;44&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_u3&quot; value=&quot;ProductAnalysisScreen&amp;#xa;(Nutrients, Allergens, Eco)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;560&quot; y=&quot;82&quot; width=&quot;220&quot; height=&quot;44&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_u4&quot; value=&quot;MyPets &amp;amp; SuitableFood&amp;#xa;(Profiles &amp;amp; Allergies)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;134&quot; width=&quot;220&quot; height=&quot;44&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_u5&quot; value=&quot;CompareScreen&amp;#xa;(2-3 Product Matrix)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;320&quot; y=&quot;134&quot; width=&quot;220&quot; height=&quot;44&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_u6&quot; value=&quot;Profile, Feedback &amp;amp; Settings&amp;#xa;(Contributions &amp;amp; Reviews)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;560&quot; y=&quot;134&quot; width=&quot;220&quot; height=&quot;44&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Layer 2 Background &amp; Header --&gt;
+        &lt;mxCell id=&quot;f3_l2_bg&quot; value=&quot;2. State &amp;amp; ViewModel Layer&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;250&quot; width=&quot;740&quot; height=&quot;110&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_vm&quot; value=&quot;AppViewModel (Kotlin Coroutines + StateFlow Observables)&amp;#xa;Manages ProductUIState, PetListState, AuthState, SavedState &amp;amp; CompareState&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;290&quot; width=&quot;700&quot; height=&quot;54&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Layer 3 Background &amp; Header --&gt;
+        &lt;mxCell id=&quot;f3_l3_bg&quot; value=&quot;3. Nutritional Assessment &amp;amp; Domain Evaluation Layer&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;420&quot; width=&quot;740&quot; height=&quot;115&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_d1&quot; value=&quot;NutritionAssessmentEngine&amp;#xa;(FEDIAF DM% Standards)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;462&quot; width=&quot;220&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_d2&quot; value=&quot;AafcoAssessmentEngine&amp;#xa;(AAFCO Nutrient Profiles)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;320&quot; y=&quot;462&quot; width=&quot;220&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_d3&quot; value=&quot;Ingredient &amp;amp; Recommender&amp;#xa;(Allergens &amp;amp; ScoringSystem)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;560&quot; y=&quot;462&quot; width=&quot;220&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Layer 4 Background &amp; Header --&gt;
+        &lt;mxCell id=&quot;f3_l4_bg&quot; value=&quot;4. Data &amp;amp; Repository Layer&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;595&quot; width=&quot;740&quot; height=&quot;115&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_r1&quot; value=&quot;ProductRepository&amp;#xa;(Barcode, ID &amp;amp; Search Queries)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;637&quot; width=&quot;335&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_r2&quot; value=&quot;FirestoreRepository&amp;#xa;(Users, Pets, Saved, Reviews, Contributions &amp;amp; Brands)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;445&quot; y=&quot;637&quot; width=&quot;335&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Layer 5 Background &amp; Header --&gt;
+        &lt;mxCell id=&quot;f3_l5_bg&quot; value=&quot;5. Device Hardware &amp;amp; Cloud Services&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;770&quot; width=&quot;740&quot; height=&quot;115&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_c1&quot; value=&quot;CameraX + Google ML Kit&amp;#xa;(On-Device Barcode Vision)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4A017;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;812&quot; width=&quot;220&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_c2&quot; value=&quot;Firebase Authentication&amp;#xa;(Email &amp;amp; Google Sign-In)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4A017;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;320&quot; y=&quot;812&quot; width=&quot;220&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_c3&quot; value=&quot;Cloud Firestore NoSQL DB&amp;#xa;(Real-time Cloud Persistence)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4A017;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;560&quot; y=&quot;812&quot; width=&quot;220&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Clean Vertical Layer Connectors --&gt;
+        &lt;mxCell id=&quot;f3_e1&quot; value=&quot;UI Events &amp;amp; StateFlow&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f3_l1_bg&quot; target=&quot;f3_l2_bg&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_e2&quot; value=&quot;Evaluates Nutrients &amp;amp; Allergies&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f3_l2_bg&quot; target=&quot;f3_l3_bg&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_e3&quot; value=&quot;Repository Data Requests&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f3_l3_bg&quot; target=&quot;f3_l4_bg&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f3_e4&quot; value=&quot;Cloud Sync &amp;amp; Auth&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f3_l4_bg&quot; target=&quot;f3_l5_bg&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag3_mm_drawer" class="code-drawer">
+        <pre>flowchart TD
+    subgraph L1 ["1. Presentation Layer (Jetpack Compose UI)"]
+        direction TB
+        U1["ProductScanner | MainDashboard | ProductAnalysisScreen"]
+        U2["MyPetsScreen | SuitableFoodScreen | CompareScreen | Profile &amp; Settings"]
+    end
+
+    subgraph L2 ["2. State &amp; ViewModel Layer"]
+        direction TB
+        VM["AppViewModel (Kotlin Coroutines + StateFlow Observables)<br/>ProductUIState, PetListState, AuthState, SavedState &amp; CompareState"]
+    end
+
+    subgraph L3 ["3. Nutritional Assessment &amp; Domain Evaluation Layer"]
+        direction TB
+        D1["NutritionAssessmentEngine (FEDIAF) &amp; AafcoAssessmentEngine (AAFCO)"]
+        D2["ScoringSystem | IngredientAnalyzer | FoodRecommender"]
+    end
+
+    subgraph L4 ["4. Data &amp; Repository Layer"]
+        direction TB
+        R1["ProductRepository (Barcode, ID &amp; Search Queries)"]
+        R2["FirestoreRepository (Users, Pets, Saved, Reviews, Contributions &amp; Brands)"]
+    end
+
+    subgraph L5 ["5. Device Hardware &amp; Cloud Services"]
+        direction TB
+        C1["CameraX + Google ML Kit (On-Device Barcode Vision)"]
+        C2["Firebase Authentication &amp; Cloud Firestore NoSQL DB"]
+    end
+
+    L1 <==>|"UI Events &amp; StateFlow"| L2
+    L2 <==>|"Evaluates Nutrients &amp; Allergies"| L3
+    L3 <==>|"Repository Data Requests"| L4
+    L4 <==>|"Cloud Sync &amp; Auth"| L5</pre>
+    </div>
+</div>
+
+<!-- Figure 4: Entity-Relationship Diagram (ERD) -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 4: Entity-Relationship Diagram (ERD)</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag4', 'Figure_4_ERD_Schema')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag4', 'Figure_4_ERD_Schema')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_4_ERD_Schema.drawio" download="Figure_4_ERD_Schema.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag4_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag4">
+        <pre class="mermaid">
+erDiagram
+    USERS ||--o{ PETS : "owns"
+    USERS ||--o{ SAVED_PRODUCTS : "saves"
+    USERS ||--o{ CONTRIBUTIONS : "submits"
+    USERS ||--o{ REVIEWS : "writes"
+    PRODUCTS ||--o{ REVIEWS : "receives"
+    BRANDS ||--o{ PRODUCTS : "produces"
+    SAVED_PRODUCTS }o--|| PRODUCTS : "references"
+
+    USERS {
+        string userId PK
+        string displayName
+        string email
+        string avatarId
+        timestamp createdAt
+    }
+    PETS {
+        string petId PK
+        string userId FK
+        string petName
+        string type
+        string breed
+        string birthday
+        long age
+        string allergies
+    }
+    SAVED_PRODUCTS {
+        string barcode PK
+        string userId FK
+        string productId
+        timestamp savedAt
+    }
+    PRODUCTS {
+        string productId PK
+        string barcode
+        string productName
+        string brand
+        string pet
+        string lifeStage
+        string foodType
+        string ingredients
+        map nutrition
+        string packagingMaterial
+    }
+    REVIEWS {
+        string reviewId PK
+        string productId FK
+        string userId FK
+        string userName
+        int rating
+        string comment
+    }
+    CONTRIBUTIONS {
+        string id PK
+        string userId FK
+        string barcode
+        string productName
+        string brand
+        string productPhotoUrl
+    }
+    BRANDS {
+        string brandId PK
+        string brandName
+        string brandHistory
+    }
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Defines the Cloud Firestore NoSQL database schema and entity relationships. It details the primary keys (PK), foreign keys (FK), and data fields across the seven collections—<code>USERS</code>, <code>PETS</code>, <code>SAVED_PRODUCTS</code>, <code>PRODUCTS</code>, <code>REVIEWS</code>, <code>CONTRIBUTIONS</code>, and <code>BRANDS</code>—establishing one-to-many (1:N) relationships for pet profiles, saved wishlists, product reviews, and community submissions.
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag4_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag4_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag4_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag4_xml_drawer" class="code-drawer">
+        <textarea id="diag4_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_4_entity-relationship_diagram_erd&quot; name=&quot;Figure 4: Entity-Relationship Diagram (ERD)&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;850&quot; pageHeight=&quot;980&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- 1. USERS Table --&gt;
+        &lt;mxCell id=&quot;f4_u_hdr&quot; value=&quot;USERS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;40&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_users&quot; value=&quot;PK  userId: String&amp;#xa;    displayName: String&amp;#xa;    email: String&amp;#xa;    avatarId: String&amp;#xa;    createdAt: Timestamp&amp;#xa;    lastLoginAt: Timestamp&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;72&quot; width=&quot;280&quot; height=&quot;128&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 2. PETS Table --&gt;
+        &lt;mxCell id=&quot;f4_p_hdr&quot; value=&quot;PETS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;40&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_pets&quot; value=&quot;PK  petId: String&amp;#xa;FK  userId: String&amp;#xa;    petName: String&amp;#xa;    type: String (Dog / Cat)&amp;#xa;    breed: String&amp;#xa;    birthday: String&amp;#xa;    age: Long&amp;#xa;    allergies: String&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;72&quot; width=&quot;280&quot; height=&quot;158&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 3. SAVED_PRODUCTS Table --&gt;
+        &lt;mxCell id=&quot;f4_s_hdr&quot; value=&quot;SAVED_PRODUCTS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;280&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_saved&quot; value=&quot;PK  barcode: String&amp;#xa;FK  userId: String&amp;#xa;FK  productId: String&amp;#xa;    savedAt: Timestamp&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;312&quot; width=&quot;280&quot; height=&quot;98&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 4. PRODUCTS Table --&gt;
+        &lt;mxCell id=&quot;f4_pr_hdr&quot; value=&quot;PRODUCTS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;280&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_prod&quot; value=&quot;PK  productId: String&amp;#xa;    barcode: String&amp;#xa;    productName: String&amp;#xa;    brand: String&amp;#xa;    pet: String (Dog / Cat)&amp;#xa;    lifeStage: String&amp;#xa;    foodType: String&amp;#xa;    ingredients: String&amp;#xa;    nutrition: Map (Key-Value)&amp;#xa;    packagingMaterial: String&amp;#xa;    packagingRecyclability: String&amp;#xa;    packagingBiodegradability: String&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;312&quot; width=&quot;280&quot; height=&quot;228&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 5. REVIEWS Table --&gt;
+        &lt;mxCell id=&quot;f4_r_hdr&quot; value=&quot;REVIEWS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;490&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_rev&quot; value=&quot;PK  reviewId: String&amp;#xa;FK  productId: String&amp;#xa;FK  userId: String&amp;#xa;    userName: String&amp;#xa;    rating: Int (1 to 5)&amp;#xa;    comment: String&amp;#xa;    timestamp: Long&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;522&quot; width=&quot;280&quot; height=&quot;143&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 6. CONTRIBUTIONS Table --&gt;
+        &lt;mxCell id=&quot;f4_c_hdr&quot; value=&quot;CONTRIBUTIONS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;735&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_cont&quot; value=&quot;PK  id: String&amp;#xa;FK  userId: String&amp;#xa;    barcode: String&amp;#xa;    productName: String&amp;#xa;    brand: String&amp;#xa;    productPhotoUrl: String&amp;#xa;    ingredientsPhotoUrl: String&amp;#xa;    nutritionPhotoUrl: String&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;60&quot; y=&quot;767&quot; width=&quot;280&quot; height=&quot;158&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 7. BRANDS Table --&gt;
+        &lt;mxCell id=&quot;f4_b_hdr&quot; value=&quot;BRANDS&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;735&quot; width=&quot;280&quot; height=&quot;32&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_brand&quot; value=&quot;PK  brandId: String&amp;#xa;    brandName: String&amp;#xa;    brandHistory: String&amp;#xa;    recallHistory: List of Strings&amp;#xa;    websiteUrl: String&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Consolas;fontSize=12;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;767&quot; width=&quot;280&quot; height=&quot;118&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Clean Relationship Lines --&gt;
+        &lt;mxCell id=&quot;f4_r1&quot; value=&quot;1 : N (owns)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.4;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_users&quot; target=&quot;f4_pets&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_r2&quot; value=&quot;1 : N (saves)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_users&quot; target=&quot;f4_s_hdr&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_r3&quot; value=&quot;N : 1 (references)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.22;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_saved&quot; target=&quot;f4_prod&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_r4&quot; value=&quot;1 : N (writes)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_saved&quot; target=&quot;f4_r_hdr&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_r5&quot; value=&quot;1 : N (has)&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.85;entryX=1;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_prod&quot; target=&quot;f4_rev&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;420&quot; y=&quot;505&quot; /&gt;
+              &lt;mxPoint x=&quot;420&quot; y=&quot;593&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_r6&quot; value=&quot;1 : N (submits)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_rev&quot; target=&quot;f4_c_hdr&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f4_r7&quot; value=&quot;1 : N (produces)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;entryX=0.5;entryY=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f4_b_hdr&quot; target=&quot;f4_prod&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag4_mm_drawer" class="code-drawer">
+        <pre>erDiagram
+    USERS ||--o{ PETS : "owns"
+    USERS ||--o{ SAVED_PRODUCTS : "saves"
+    USERS ||--o{ CONTRIBUTIONS : "submits"
+    USERS ||--o{ REVIEWS : "writes"
+    PRODUCTS ||--o{ REVIEWS : "receives"
+    BRANDS ||--o{ PRODUCTS : "produces"
+    SAVED_PRODUCTS }o--|| PRODUCTS : "references"
+
+    USERS {
+        string userId PK
+        string displayName
+        string email
+        string avatarId
+        timestamp createdAt
+    }
+    PETS {
+        string petId PK
+        string userId FK
+        string petName
+        string type
+        string breed
+        string birthday
+        long age
+        string allergies
+    }
+    SAVED_PRODUCTS {
+        string barcode PK
+        string userId FK
+        string productId
+        timestamp savedAt
+    }
+    PRODUCTS {
+        string productId PK
+        string barcode
+        string productName
+        string brand
+        string pet
+        string lifeStage
+        string foodType
+        string ingredients
+        map nutrition
+        string packagingMaterial
+    }
+    REVIEWS {
+        string reviewId PK
+        string productId FK
+        string userId FK
+        string userName
+        int rating
+        string comment
+    }
+    CONTRIBUTIONS {
+        string id PK
+        string userId FK
+        string barcode
+        string productName
+        string brand
+        string productPhotoUrl
+    }
+    BRANDS {
+        string brandId PK
+        string brandName
+        string brandHistory
+    }</pre>
+    </div>
+</div>
+
+<!-- Figure 5: Use Case Diagram -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 5: Use Case Diagram</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag5', 'Figure_5_Use_Case_Diagram')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag5', 'Figure_5_Use_Case_Diagram')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_5_Use_Case_Diagram.drawio" download="Figure_5_Use_Case_Diagram.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag5_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag5">
+        <pre class="mermaid">
+flowchart LR
+    subgraph Actors ["Actors"]
+        direction TB
+        Guest["Guest User"]
+        User["Registered Pet Parent"]
+    end
+
+    subgraph UC ["FurBetterChoice Mobile System"]
+        direction TB
+        UC1(["UC1: Scan Product Barcode"])
+        UC2(["UC2: View FEDIAF &amp; AAFCO Assessment"])
+        UC3(["UC3: View Ingredient &amp; Eco Details"])
+        UC4(["UC4: Filter Smarter Alternatives"])
+        UC5(["UC5: Manage Pets &amp; Record Allergies"])
+        UC6(["UC6: Receive Pet Allergen Glow Alerts"])
+        UC7(["UC7: Personalized Food Recommendations"])
+        UC8(["UC8: Save &amp; Compare 2-3 Products"])
+        UC9(["UC9: Contribute Missing Product &amp; Photos"])
+        UC10(["UC10: Submit Ratings &amp; Reviews"])
+    end
+
+    Guest --> UC1 &amp; UC2 &amp; UC3 &amp; UC4
+    User --> UC1 &amp; UC2 &amp; UC3 &amp; UC4 &amp; UC5 &amp; UC6 &amp; UC7 &amp; UC8 &amp; UC9 &amp; UC10
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Maps the functional requirements and user capabilities across 10 core use cases (UC1–UC10). Guest Users can scan barcodes, view FEDIAF/AAFCO evaluations, inspect ingredients/eco-packaging, and filter alternatives (UC1–UC4); Registered Pet Parents inherit these and gain pet profile management, glowing allergen warnings, personalized recommendations, product comparisons, community product contributions, and reviews (UC5–UC10).
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag5_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag5_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag5_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag5_xml_drawer" class="code-drawer">
+        <textarea id="diag5_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_5_use_case_diagram&quot; name=&quot;Figure 5: Use Case Diagram&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;820&quot; pageHeight=&quot;940&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Actors on Left (Users Only) --&gt;
+        &lt;mxCell id=&quot;f5_guest&quot; value=&quot;Guest User&quot; style=&quot;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;70&quot; y=&quot;150&quot; width=&quot;45&quot; height=&quot;85&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_user&quot; value=&quot;Registered&amp;#xa;Pet Parent&quot; style=&quot;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;70&quot; y=&quot;530&quot; width=&quot;45&quot; height=&quot;85&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- System Boundary Box (Flat Background Box) --&gt;
+        &lt;mxCell id=&quot;f5_sys&quot; value=&quot;FurBetterChoice Mobile System&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFCFB;strokeColor=#2E7D5B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=8;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#1B4D36;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;230&quot; y=&quot;40&quot; width=&quot;520&quot; height=&quot;845&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- 10 Use Cases with generous 80px vertical intervals (Flat parent=1) --&gt;
+        &lt;mxCell id=&quot;f5_uc1&quot; value=&quot;UC1: Scan Product Barcode (CameraX &amp;amp; ML Kit)&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;90&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc2&quot; value=&quot;UC2: View FEDIAF &amp;amp; AAFCO Nutritional Evaluation&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;170&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc3&quot; value=&quot;UC3: View Ingredient Safety &amp;amp; Eco Packaging&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;250&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc4&quot; value=&quot;UC4: Browse &amp;amp; Filter Smarter Alternatives&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;330&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc5&quot; value=&quot;UC5: Register, Login &amp;amp; Manage Pet Profiles&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;410&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc6&quot; value=&quot;UC6: Receive Glowing Pet Allergen Warning Alerts&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;490&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc7&quot; value=&quot;UC7: Get Personalized Suitable Food Recommendations&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;570&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc8&quot; value=&quot;UC8: Save Foods &amp;amp; Compare 2-3 Items Side-by-Side&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;650&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc9&quot; value=&quot;UC9: Contribute Missing Product &amp;amp; Label Photos&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;730&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_uc10&quot; value=&quot;UC10: Submit Product Ratings &amp;amp; Community Reviews&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;810&quot; width=&quot;400&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Actor Associations --&gt;
+        &lt;mxCell id=&quot;f5_e1&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2C3E36;strokeWidth=1.3;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_guest&quot; target=&quot;f5_uc1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e2&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2C3E36;strokeWidth=1.3;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_guest&quot; target=&quot;f5_uc2&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e3&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2C3E36;strokeWidth=1.3;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_guest&quot; target=&quot;f5_uc3&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e4&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2C3E36;strokeWidth=1.3;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_guest&quot; target=&quot;f5_uc4&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;!-- Registered User inherits Guest capabilities + UC5..UC10 --&gt;
+        &lt;mxCell id=&quot;f5_gen&quot; value=&quot;inherits&quot; style=&quot;edgeStyle=none;html=1;endArrow=block;endFill=0;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_guest&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e5&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2E7D5B;strokeWidth=1.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_uc5&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e6&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2E7D5B;strokeWidth=1.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_uc6&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e7&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2E7D5B;strokeWidth=1.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_uc7&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e8&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2E7D5B;strokeWidth=1.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_uc8&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e9&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2E7D5B;strokeWidth=1.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_uc9&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f5_e10&quot; style=&quot;edgeStyle=none;html=1;strokeColor=#2E7D5B;strokeWidth=1.5;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f5_user&quot; target=&quot;f5_uc10&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag5_mm_drawer" class="code-drawer">
+        <pre>flowchart LR
+    subgraph Actors ["Actors"]
+        direction TB
+        Guest["Guest User"]
+        User["Registered Pet Parent"]
+    end
+
+    subgraph UC ["FurBetterChoice Mobile System"]
+        direction TB
+        UC1(["UC1: Scan Product Barcode"])
+        UC2(["UC2: View FEDIAF &amp; AAFCO Assessment"])
+        UC3(["UC3: View Ingredient &amp; Eco Details"])
+        UC4(["UC4: Filter Smarter Alternatives"])
+        UC5(["UC5: Manage Pets &amp; Record Allergies"])
+        UC6(["UC6: Receive Pet Allergen Glow Alerts"])
+        UC7(["UC7: Personalized Food Recommendations"])
+        UC8(["UC8: Save &amp; Compare 2-3 Products"])
+        UC9(["UC9: Contribute Missing Product &amp; Photos"])
+        UC10(["UC10: Submit Ratings &amp; Reviews"])
+    end
+
+    Guest --> UC1 &amp; UC2 &amp; UC3 &amp; UC4
+    User --> UC1 &amp; UC2 &amp; UC3 &amp; UC4 &amp; UC5 &amp; UC6 &amp; UC7 &amp; UC8 &amp; UC9 &amp; UC10</pre>
+    </div>
+</div>
+
+<!-- Figure 6: Sequence Diagram (Scan & Evaluation) -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 6: Sequence Diagram (Scan & Evaluation)</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag6', 'Figure_6_Sequence_Diagram')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag6', 'Figure_6_Sequence_Diagram')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_6_Sequence_Diagram.drawio" download="Figure_6_Sequence_Diagram.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag6_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag6">
+        <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor U as Pet Parent
+    participant UI as Scanner &amp; UI
+    participant VM as AppViewModel
+    participant DB as Cloud Firestore
+    participant EN as Nutrition Engines
+
+    U->>UI: Scans barcode with CameraX
+    UI->>VM: ML Kit decodes barcode string
+    VM->>DB: Query product by barcode / ID
+    DB-->>VM: Return Product &amp; Nutrient Map
+    VM->>DB: Fetch User Pet Profiles &amp; Allergies
+    DB-->>VM: Return Pet List &amp; Recorded Allergies
+    VM->>EN: Evaluate FEDIAF, AAFCO &amp; Allergens
+    EN-->>VM: Return DM% Tables, Scores &amp; Alerts
+    VM-->>UI: Emit ProductUIState.Success
+    UI-->>U: Display Report &amp; Allergen Warnings
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Traces the chronological object interactions during a real-time barcode scan and product evaluation (Steps 1–10). When a Pet Parent scans a barcode via CameraX, ML Kit decodes the string and <code>AppViewModel</code> queries Cloud Firestore for product nutrients and the user's pet allergies, passes them to the Nutrition &amp; Allergy Engines for Dry Matter (DM%) and allergen evaluation, and renders the final report on the UI.
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag6_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag6_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag6_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag6_xml_drawer" class="code-drawer">
+        <textarea id="diag6_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_6_sequence_diagram_scan_and_evaluation&quot; name=&quot;Figure 6: Sequence Diagram (Scan &amp;amp; Evaluation)&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;880&quot; pageHeight=&quot;850&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Lifeline Headers --&gt;
+        &lt;mxCell id=&quot;f6_h1&quot; value=&quot;Pet Parent&amp;#xa;(User)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;40&quot; y=&quot;40&quot; width=&quot;120&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_h2&quot; value=&quot;Scanner &amp;amp; UI&amp;#xa;(Compose)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;200&quot; y=&quot;40&quot; width=&quot;125&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_h3&quot; value=&quot;AppViewModel&amp;#xa;(StateFlow)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;365&quot; y=&quot;40&quot; width=&quot;125&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_h4&quot; value=&quot;Cloud Firestore&amp;#xa;(Products &amp;amp; Pets)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;530&quot; y=&quot;40&quot; width=&quot;130&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_h5&quot; value=&quot;Nutrition &amp;amp; Allergy&amp;#xa;Engines&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;700&quot; y=&quot;40&quot; width=&quot;135&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Vertical Dashed Lifelines --&gt;
+        &lt;mxCell id=&quot;f6_l1&quot; value=&quot;&quot; style=&quot;endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;100&quot; y=&quot;90&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;100&quot; y=&quot;780&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_l2&quot; value=&quot;&quot; style=&quot;endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;262&quot; y=&quot;90&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;262&quot; y=&quot;780&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_l3&quot; value=&quot;&quot; style=&quot;endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;90&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;780&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_l4&quot; value=&quot;&quot; style=&quot;endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;595&quot; y=&quot;90&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;595&quot; y=&quot;780&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_l5&quot; value=&quot;&quot; style=&quot;endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;767&quot; y=&quot;90&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;767&quot; y=&quot;780&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Sequence Messages (Spaced 65px vertically so labels never collide) --&gt;
+        &lt;mxCell id=&quot;f6_m1&quot; value=&quot;1. Scans barcode with CameraX&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;100&quot; y=&quot;140&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;262&quot; y=&quot;140&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m2&quot; value=&quot;2. ML Kit decodes barcode string&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;262&quot; y=&quot;205&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;205&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m3&quot; value=&quot;3. Query product by barcode / ID&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;270&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;595&quot; y=&quot;270&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m4&quot; value=&quot;4. Return Product &amp;amp; Nutrient Map&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;595&quot; y=&quot;335&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;335&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m5&quot; value=&quot;5. Fetch User Pet Profiles &amp;amp; Allergies&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;400&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;595&quot; y=&quot;400&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m6&quot; value=&quot;6. Return Pet List &amp;amp; Recorded Allergies&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;595&quot; y=&quot;465&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;465&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m7&quot; value=&quot;7. Evaluate FEDIAF, AAFCO &amp;amp; Allergens&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;530&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;767&quot; y=&quot;530&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m8&quot; value=&quot;8. Return DM% Tables, Scores &amp;amp; Alerts&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;767&quot; y=&quot;600&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;600&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m9&quot; value=&quot;9. Emit ProductUIState.Success&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;427&quot; y=&quot;665&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;262&quot; y=&quot;665&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f6_m10&quot; value=&quot;10. Display Report &amp;amp; Allergen Warnings&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;mxPoint x=&quot;262&quot; y=&quot;730&quot; as=&quot;sourcePoint&quot;/&gt;&lt;mxPoint x=&quot;100&quot; y=&quot;730&quot; as=&quot;targetPoint&quot;/&gt;&lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag6_mm_drawer" class="code-drawer">
+        <pre>sequenceDiagram
+    autonumber
+    actor U as Pet Parent
+    participant UI as Scanner &amp; UI
+    participant VM as AppViewModel
+    participant DB as Cloud Firestore
+    participant EN as Nutrition Engines
+
+    U->>UI: Scans barcode with CameraX
+    UI->>VM: ML Kit decodes barcode string
+    VM->>DB: Query product by barcode / ID
+    DB-->>VM: Return Product &amp; Nutrient Map
+    VM->>DB: Fetch User Pet Profiles &amp; Allergies
+    DB-->>VM: Return Pet List &amp; Recorded Allergies
+    VM->>EN: Evaluate FEDIAF, AAFCO &amp; Allergens
+    EN-->>VM: Return DM% Tables, Scores &amp; Alerts
+    VM-->>UI: Emit ProductUIState.Success
+    UI-->>U: Display Report &amp; Allergen Warnings</pre>
+    </div>
+</div>
+
+<!-- Figure 7: Program Flowchart (Nutrition & Allergy) -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 7: Program Flowchart (Nutrition & Allergy)</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag7', 'Figure_7_Algorithm_Flowchart')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag7', 'Figure_7_Algorithm_Flowchart')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_7_Algorithm_Flowchart.drawio" download="Figure_7_Algorithm_Flowchart.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag7_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag7">
+        <pre class="mermaid">
+flowchart TD
+    Start(["Start Product Evaluation"]) --> Species["Detect Pet Species (Dog/Cat) &amp; Life Stage"]
+    Species --> CheckMoist{"Moisture %<br/>Listed?"}
+
+    CheckMoist -- "Yes" --> CalcDM["Calculate Dry Matter (DM%)<br/>DM% = 100 - Moisture%<br/>Nutrient DM = (As-Fed / DM%) x 100"]
+    CheckMoist -- "No" --> RawVal["Flag Missing Moisture<br/>Use As-Fed Values &amp; Show Note"]
+
+    CalcDM --> Eval["Evaluate Against FEDIAF &amp; AAFCO Tables<br/>(Protein, Fat, Ca, P, Taurine &amp; Ca:P Ratio)"]
+    RawVal --> Eval
+
+    Eval --> HasPets{"User Has<br/>Registered Pets?"}
+
+    HasPets -- "Yes" --> AllergyCheck{"Ingredient Matches<br/>Pet Allergy?"}
+    AllergyCheck -- "Yes" --> RedGlow["Trigger Red Glow Alert<br/>'[Pet] is allergic to [Item]'"]
+    AllergyCheck -- "No" --> MarkSafe["Mark Safe for Pet<br/>Include in Smarter Alternatives"]
+
+    HasPets -- "No" --> CalcScore["Compute Overall Rating &amp; Eco Packaging Score"]
+    RedGlow --> CalcScore
+    MarkSafe --> CalcScore
+
+    CalcScore --> Render["Render ProductAnalysisScreen UI"]
+    Render --> Done(["End Evaluation"])
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Details the step-by-step decision logic of the nutritional assessment and allergen engine. The algorithm detects the pet's species and life stage, checks whether moisture percentage is listed to convert nutrients to a Dry Matter (DM%) basis, evaluates values against FEDIAF and AAFCO minimums, cross-checks ingredients against registered pet allergies to trigger red glow alerts, and computes the overall product and eco-packaging scores.
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag7_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag7_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag7_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag7_xml_drawer" class="code-drawer">
+        <textarea id="diag7_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_7_program_flowchart_nutrition_and_allergy&quot; name=&quot;Figure 7: Program Flowchart (Nutrition &amp;amp; Allergy)&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;840&quot; pageHeight=&quot;1180&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Start --&gt;
+        &lt;mxCell id=&quot;f7_start&quot; value=&quot;Start Product Evaluation&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;310&quot; y=&quot;40&quot; width=&quot;220&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Step 1 --&gt;
+        &lt;mxCell id=&quot;f7_s1&quot; value=&quot;Detect Pet Species (Dog / Cat) &amp;amp; Life Stage&amp;#xa;(Growth / Reproduction vs. Adult Maintenance)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;250&quot; y=&quot;130&quot; width=&quot;340&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Decision 1: Moisture --&gt;
+        &lt;mxCell id=&quot;f7_d1&quot; value=&quot;Moisture %&amp;#xa;Listed?&quot; style=&quot;rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;335&quot; y=&quot;230&quot; width=&quot;170&quot; height=&quot;90&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Left Branch: DM Calc --&gt;
+        &lt;mxCell id=&quot;f7_dm&quot; value=&quot;Calculate Dry Matter (DM%)&amp;#xa;DM% = 100 - Moisture%&amp;#xa;Nutrient DM = (As-Fed / DM%) x 100&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;70&quot; y=&quot;360&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Right Branch: As-Fed Fallback --&gt;
+        &lt;mxCell id=&quot;f7_raw&quot; value=&quot;Flag Missing Moisture&amp;#xa;Use As-Fed Values &amp;amp; Show Note&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;490&quot; y=&quot;360&quot; width=&quot;280&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Step 2: Standards Check --&gt;
+        &lt;mxCell id=&quot;f7_s2&quot; value=&quot;Evaluate Against FEDIAF &amp;amp; AAFCO Reference Tables&amp;#xa;(Protein, Fat, Calcium, Phosphorus, Taurine &amp;amp; Ca:P Ratio)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;210&quot; y=&quot;485&quot; width=&quot;420&quot; height=&quot;65&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Decision 2: Has Pets --&gt;
+        &lt;mxCell id=&quot;f7_d2&quot; value=&quot;User Has&amp;#xa;Registered Pets?&quot; style=&quot;rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;335&quot; y=&quot;595&quot; width=&quot;170&quot; height=&quot;90&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Decision 3: Allergy Match --&gt;
+        &lt;mxCell id=&quot;f7_d3&quot; value=&quot;Ingredient Matches&amp;#xa;Pet Allergy?&quot; style=&quot;rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;125&quot; y=&quot;725&quot; width=&quot;170&quot; height=&quot;90&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Alert Box --&gt;
+        &lt;mxCell id=&quot;f7_alert&quot; value=&quot;Trigger Red Glow Alert&amp;#xa;&#x27;[Pet] is allergic to [Item]&#x27;&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#D32F2F;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#B71C1C;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;40&quot; y=&quot;860&quot; width=&quot;220&quot; height=&quot;65&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Safe Box --&gt;
+        &lt;mxCell id=&quot;f7_safe&quot; value=&quot;Mark Safe for Pet&amp;#xa;Include in Smarter Alternatives&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;290&quot; y=&quot;860&quot; width=&quot;220&quot; height=&quot;65&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Final Step: Render --&gt;
+        &lt;mxCell id=&quot;f7_out&quot; value=&quot;Compute Overall Rating &amp;amp; Eco Packaging Score&amp;#xa;Render ProductAnalysisScreen UI&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;220&quot; y=&quot;975&quot; width=&quot;400&quot; height=&quot;65&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_end&quot; value=&quot;End Evaluation&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;320&quot; y=&quot;1080&quot; width=&quot;200&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Flowchart Connectors --&gt;
+        &lt;mxCell id=&quot;f7_e1&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_start&quot; target=&quot;f7_s1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e2&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_s1&quot; target=&quot;f7_d1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_e3&quot; value=&quot;Yes&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_d1&quot; target=&quot;f7_dm&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e4&quot; value=&quot;No&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_d1&quot; target=&quot;f7_raw&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_e5&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.25;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_dm&quot; target=&quot;f7_s2&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e6&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.75;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_raw&quot; target=&quot;f7_s2&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_e7&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_s2&quot; target=&quot;f7_d2&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_e8&quot; value=&quot;Yes&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_d2&quot; target=&quot;f7_d3&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e9&quot; value=&quot;No&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.85;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_d2&quot; target=&quot;f7_out&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;
+              &lt;mxPoint x=&quot;620&quot; y=&quot;640&quot; /&gt;
+              &lt;mxPoint x=&quot;620&quot; y=&quot;940&quot; /&gt;
+              &lt;mxPoint x=&quot;560&quot; y=&quot;940&quot; /&gt;
+            &lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_e10&quot; value=&quot;Yes&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_d3&quot; target=&quot;f7_alert&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;&lt;mxPoint x=&quot;150&quot; y=&quot;770&quot; /&gt;&lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e11&quot; value=&quot;No&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_d3&quot; target=&quot;f7_safe&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;
+            &lt;Array as=&quot;points&quot;&gt;&lt;mxPoint x=&quot;400&quot; y=&quot;770&quot; /&gt;&lt;/Array&gt;
+          &lt;/mxGeometry&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;f7_e12&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.2;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_alert&quot; target=&quot;f7_out&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e13&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_safe&quot; target=&quot;f7_out&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f7_e14&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f7_out&quot; target=&quot;f7_end&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag7_mm_drawer" class="code-drawer">
+        <pre>flowchart TD
+    Start(["Start Product Evaluation"]) --> Species["Detect Pet Species (Dog/Cat) &amp; Life Stage"]
+    Species --> CheckMoist{"Moisture %<br/>Listed?"}
+
+    CheckMoist -- "Yes" --> CalcDM["Calculate Dry Matter (DM%)<br/>DM% = 100 - Moisture%<br/>Nutrient DM = (As-Fed / DM%) x 100"]
+    CheckMoist -- "No" --> RawVal["Flag Missing Moisture<br/>Use As-Fed Values &amp; Show Note"]
+
+    CalcDM --> Eval["Evaluate Against FEDIAF &amp; AAFCO Tables<br/>(Protein, Fat, Ca, P, Taurine &amp; Ca:P Ratio)"]
+    RawVal --> Eval
+
+    Eval --> HasPets{"User Has<br/>Registered Pets?"}
+
+    HasPets -- "Yes" --> AllergyCheck{"Ingredient Matches<br/>Pet Allergy?"}
+    AllergyCheck -- "Yes" --> RedGlow["Trigger Red Glow Alert<br/>'[Pet] is allergic to [Item]'"]
+    AllergyCheck -- "No" --> MarkSafe["Mark Safe for Pet<br/>Include in Smarter Alternatives"]
+
+    HasPets -- "No" --> CalcScore["Compute Overall Rating &amp; Eco Packaging Score"]
+    RedGlow --> CalcScore
+    MarkSafe --> CalcScore
+
+    CalcScore --> Render["Render ProductAnalysisScreen UI"]
+    Render --> Done(["End Evaluation"])</pre>
+    </div>
+</div>
+
+<!-- Figure 8: Hierarchical Navigation Map -->
+<div class="a4-card">
+    <div class="diagram-header">
+        <div>
+            <h2>Figure 8: Hierarchical Navigation Map</h2>
+            <div style="font-size:11.5px; color:#666; margin-top:2px;">Format: A4 Portrait | Pure Firestore Architecture | Clean Draw.io Native Cells</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="copyDiagramPng('diag8', 'Figure_8_Navigation_Map')">📋 Copy PNG for Word</button>
+            <button class="btn btn-outline" onclick="downloadDiagramPng('diag8', 'Figure_8_Navigation_Map')">💾 Download PNG</button>
+            <a class="btn btn-drawio" href="Figure_8_Navigation_Map.drawio" download="Figure_8_Navigation_Map.drawio">✏️ Download .drawio</a>
+            <button class="btn btn-secondary" onclick="openDiagramInDrawio('diag8_xml')">🌐 Open in Draw.io</button>
+        </div>
+    </div>
+    <div class="diagram-box" id="diag8">
+        <pre class="mermaid">
+flowchart TD
+    Launch(["App Launch"]) --> AuthCheck{"User Role /<br/>Auth Status?"}
+
+    AuthCheck -- "Sign In / Register" --> Auth["AuthScreens<br/>(Login / Sign Up / Verify Email)"]
+    AuthCheck -- "Continue (Guest or Logged In)" --> Dash["MainDashboard &amp; FloatingBottomNav<br/>(4 Bottom Tabs: Home | Profile | Community | Settings)"]
+    Auth -- "Auth Success" --> Dash
+
+    subgraph GuestZone ["Accessible to Both Guest &amp; Authenticated Users"]
+        direction TB
+        THome["Home Tab<br/>(MainDashboard)"]
+        TSet["Settings Tab<br/>(SettingsScreen)"]
+        Scan["ProductScanner<br/>(CameraX Barcode)"]
+        Hist["RecentHistoryScreen<br/>(Past Scanned Foods)"]
+        SetOpts["Theme Mode &amp;<br/>Account Login / Sign Out"]
+
+        THome --> Scan --> Hist
+        TSet --> SetOpts
+    end
+
+    subgraph AuthZone ["Authenticated Pet Parent Only (Prompts Login for Guests)"]
+        direction TB
+        TProf["Profile Tab<br/>(ProfileScreen)"]
+        TComm["Community Tab<br/>(FeedbackScreen)"]
+        Pets["MyPetsScreen &amp;<br/>PetProfileDialog"]
+        Suit["SuitableFoodScreen<br/>(Ranked Safe Foods)"]
+        Saved["SavedScreen<br/>(Saved Wishlist)"]
+        Contrib["Contribute Product<br/>&amp; Label Photos"]
+
+        TProf --> Pets --> Suit
+        TProf --> Saved
+        TComm --> Contrib
+    end
+
+    Dash ==>|"Guest &amp; User Access<br/>(Home &amp; Settings Only)"| GuestZone
+    Dash ==>|"Authenticated Access Only<br/>(Unlocks Profile &amp; Community)"| AuthZone
+
+    Hist --> Ana["ProductAnalysisScreen<br/>• Guest &amp; User: FEDIAF/AAFCO, Ingredients, Eco &amp; Alternatives<br/>• Authenticated Only: Pet Allergen Glow, Save Wishlist &amp; Reviews"]
+    Suit --> Ana
+    Saved --> Ana
+
+    Ana -->|"Authenticated Only"| Comp["CompareScreen<br/>(Side-by-Side Matrix of 2-3 Pet Foods)"]
+        </pre>
+    </div>
+    <div class="diagram-desc">
+        <strong>Description:</strong> Outlines the hierarchical screen navigation and role-based access control between Guest Users and Authenticated Pet Parents. Guest Users can only access the <strong>Home Tab</strong> (<code>ProductScanner</code>, <code>RecentHistoryScreen</code>, and general <code>ProductAnalysisScreen</code> reports) and the <strong>Settings Tab</strong> (theme &amp; sign-in options), whereas Authenticated Pet Parents unlock the <strong>Profile Tab</strong> (<code>MyPetsScreen</code>, <code>SuitableFoodScreen</code>, and <code>SavedScreen</code>), the <strong>Community Tab</strong> (<code>FeedbackScreen</code> product contributions), personalized allergen alerts, reviews, and the <code>CompareScreen</code> matrix.
+    </div>
+    <div class="meta-tabs">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag8_xml_drawer')">View Draw.io XML</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="toggleDrawer('diag8_mm_drawer')">View Mermaid Source</button>
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="copyXmlCode('diag8_xml')">Copy Draw.io XML</button>
+    </div>
+    <div id="diag8_xml_drawer" class="code-drawer">
+        <textarea id="diag8_xml" style="width:100%; height:140px; font-family:Consolas, monospace; font-size:11px;" readonly>&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-11-12T00:00:00.000Z&quot; agent=&quot;FurBetterChoice&quot; version=&quot;24.0.0&quot; type=&quot;device&quot;&gt;
+  &lt;diagram id=&quot;figure_8_hierarchical_navigation_map&quot; name=&quot;Figure 8: Hierarchical Navigation Map&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1200&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;860&quot; pageHeight=&quot;900&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+        &lt;!-- Launch --&gt;
+        &lt;mxCell id=&quot;f8_launch&quot; value=&quot;App Launch&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;340&quot; y=&quot;30&quot; width=&quot;180&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Auth Check --&gt;
+        &lt;mxCell id=&quot;f8_auth_q&quot; value=&quot;User Role /&amp;#xa;Auth Status?&quot; style=&quot;rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;340&quot; y=&quot;105&quot; width=&quot;180&quot; height=&quot;80&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_auth_scr&quot; value=&quot;AuthScreens&amp;#xa;(Login / Sign Up / Verify Email)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;40&quot; y=&quot;117&quot; width=&quot;230&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Main Dashboard --&gt;
+        &lt;mxCell id=&quot;f8_dash&quot; value=&quot;MainDashboard &amp;amp; FloatingBottomNav&amp;#xa;(4 Bottom Tabs: Home | Profile | Community | Settings)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;210&quot; y=&quot;225&quot; width=&quot;440&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Group 1: Guest &amp; Authenticated Accessible Tabs (Left Zone - Flat parent=1) --&gt;
+        &lt;mxCell id=&quot;f8_grp_guest&quot; value=&quot;Accessible to Both Guest &amp;amp; Authenticated Users&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F9F5;strokeColor=#2E7D5B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=8;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#1B4D36;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;30&quot; y=&quot;325&quot; width=&quot;370&quot; height=&quot;295&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_t_home&quot; value=&quot;Home Tab&amp;#xa;(MainDashboard)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;50&quot; y=&quot;370&quot; width=&quot;155&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_t_set&quot; value=&quot;Settings Tab&amp;#xa;(SettingsScreen)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;225&quot; y=&quot;370&quot; width=&quot;155&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_scan&quot; value=&quot;ProductScanner&amp;#xa;(CameraX Barcode)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;50&quot; y=&quot;460&quot; width=&quot;155&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_set_opts&quot; value=&quot;Theme Mode, Account&amp;#xa;&amp;amp; Login / Sign Out&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;225&quot; y=&quot;460&quot; width=&quot;155&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_hist&quot; value=&quot;RecentHistoryScreen&amp;#xa;(Past Scanned Foods)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;50&quot; y=&quot;545&quot; width=&quot;155&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Group 2: Authenticated Pet Parent Only Tabs (Right Zone - Flat parent=1) --&gt;
+        &lt;mxCell id=&quot;f8_grp_user&quot; value=&quot;Authenticated Pet Parent Only (Prompts Login for Guests)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF5;strokeColor=#D4A017;strokeWidth=2;verticalAlign=top;align=center;spacingTop=8;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#7A5900;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;430&quot; y=&quot;325&quot; width=&quot;400&quot; height=&quot;295&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_t_prof&quot; value=&quot;Profile Tab&amp;#xa;(ProfileScreen)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;460&quot; y=&quot;370&quot; width=&quot;160&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_t_comm&quot; value=&quot;Community Tab&amp;#xa;(FeedbackScreen)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;645&quot; y=&quot;370&quot; width=&quot;160&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_pets&quot; value=&quot;MyPetsScreen &amp;amp;&amp;#xa;PetProfileDialog&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;445&quot; y=&quot;460&quot; width=&quot;140&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_saved&quot; value=&quot;SavedScreen&amp;#xa;(Saved Wishlist)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;595&quot; y=&quot;460&quot; width=&quot;115&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_contrib&quot; value=&quot;Contribute Product&amp;#xa;&amp;amp; Label Photos&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;720&quot; y=&quot;460&quot; width=&quot;95&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_suit&quot; value=&quot;SuitableFoodScreen&amp;#xa;(Ranked Safe Foods)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;445&quot; y=&quot;545&quot; width=&quot;140&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Core Destination: ProductAnalysisScreen --&gt;
+        &lt;mxCell id=&quot;f8_ana&quot; value=&quot;ProductAnalysisScreen&amp;#xa;• Guest &amp;amp; User: Description, FEDIAF &amp;amp; AAFCO, Ingredients, Eco Packaging, Smarter Alternatives&amp;#xa;• Authenticated Only: Personalized Pet Allergen Glow Alerts, Save to Wishlist, Post Reviews&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;90&quot; y=&quot;665&quot; width=&quot;680&quot; height=&quot;75&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Compare Destination --&gt;
+        &lt;mxCell id=&quot;f8_comp&quot; value=&quot;CompareScreen (Authenticated Only)&amp;#xa;Side-by-Side Nutritional &amp;amp; Eco Matrix of 2-3 Pet Foods&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;220&quot; y=&quot;785&quot; width=&quot;420&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Navigation Edges --&gt;
+        &lt;mxCell id=&quot;f8_e1&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_launch&quot; target=&quot;f8_auth_q&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_e2&quot; value=&quot;Sign In / Register&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_auth_q&quot; target=&quot;f8_auth_scr&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_e3&quot; value=&quot;Continue (Guest or Logged In)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_auth_q&quot; target=&quot;f8_dash&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_e4&quot; value=&quot;Auth Success&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0;entryY=0.5;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_auth_scr&quot; target=&quot;f8_dash&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;!-- Dash to Role Zones --&gt;
+        &lt;mxCell id=&quot;f8_z1&quot; value=&quot;Guest User Access&amp;#xa;(Home &amp;amp; Settings Only)&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_dash&quot; target=&quot;f8_grp_guest&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_z2&quot; value=&quot;Authenticated User Access&amp;#xa;(Unlocks Profile &amp;amp; Community)&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_dash&quot; target=&quot;f8_grp_user&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;!-- Inside Guest Zone --&gt;
+        &lt;mxCell id=&quot;f8_s1&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_t_home&quot; target=&quot;f8_scan&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_s2&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_scan&quot; target=&quot;f8_hist&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_s3&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_t_set&quot; target=&quot;f8_set_opts&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;!-- Inside Authenticated Zone --&gt;
+        &lt;mxCell id=&quot;f8_s4&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.3;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_t_prof&quot; target=&quot;f8_pets&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_s5&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.7;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_t_prof&quot; target=&quot;f8_saved&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_s6&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_pets&quot; target=&quot;f8_suit&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_s7&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_t_comm&quot; target=&quot;f8_contrib&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;!-- To ProductAnalysisScreen --&gt;
+        &lt;mxCell id=&quot;f8_a1&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.18;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_hist&quot; target=&quot;f8_ana&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_a2&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.55;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_suit&quot; target=&quot;f8_ana&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+        &lt;mxCell id=&quot;f8_a3&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.75;entryY=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_saved&quot; target=&quot;f8_ana&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+
+        &lt;!-- To CompareScreen --&gt;
+        &lt;mxCell id=&quot;f8_c1&quot; value=&quot;Compare 2-3 Saved Products (Authenticated Only)&quot; style=&quot;edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;f8_ana&quot; target=&quot;f8_comp&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;</textarea>
+    </div>
+    <div id="diag8_mm_drawer" class="code-drawer">
+        <pre>flowchart TD
+    Launch(["App Launch"]) --> AuthCheck{"User Role /<br/>Auth Status?"}
+
+    AuthCheck -- "Sign In / Register" --> Auth["AuthScreens<br/>(Login / Sign Up / Verify Email)"]
+    AuthCheck -- "Continue (Guest or Logged In)" --> Dash["MainDashboard &amp; FloatingBottomNav<br/>(4 Bottom Tabs: Home | Profile | Community | Settings)"]
+    Auth -- "Auth Success" --> Dash
+
+    subgraph GuestZone ["Accessible to Both Guest &amp; Authenticated Users"]
+        direction TB
+        THome["Home Tab<br/>(MainDashboard)"]
+        TSet["Settings Tab<br/>(SettingsScreen)"]
+        Scan["ProductScanner<br/>(CameraX Barcode)"]
+        Hist["RecentHistoryScreen<br/>(Past Scanned Foods)"]
+        SetOpts["Theme Mode &amp;<br/>Account Login / Sign Out"]
+
+        THome --> Scan --> Hist
+        TSet --> SetOpts
+    end
+
+    subgraph AuthZone ["Authenticated Pet Parent Only (Prompts Login for Guests)"]
+        direction TB
+        TProf["Profile Tab<br/>(ProfileScreen)"]
+        TComm["Community Tab<br/>(FeedbackScreen)"]
+        Pets["MyPetsScreen &amp;<br/>PetProfileDialog"]
+        Suit["SuitableFoodScreen<br/>(Ranked Safe Foods)"]
+        Saved["SavedScreen<br/>(Saved Wishlist)"]
+        Contrib["Contribute Product<br/>&amp; Label Photos"]
+
+        TProf --> Pets --> Suit
+        TProf --> Saved
+        TComm --> Contrib
+    end
+
+    Dash ==>|"Guest &amp; User Access<br/>(Home &amp; Settings Only)"| GuestZone
+    Dash ==>|"Authenticated Access Only<br/>(Unlocks Profile &amp; Community)"| AuthZone
+
+    Hist --> Ana["ProductAnalysisScreen<br/>• Guest &amp; User: FEDIAF/AAFCO, Ingredients, Eco &amp; Alternatives<br/>• Authenticated Only: Pet Allergen Glow, Save Wishlist &amp; Reviews"]
+    Suit --> Ana
+    Saved --> Ana
+
+    Ana -->|"Authenticated Only"| Comp["CompareScreen<br/>(Side-by-Side Matrix of 2-3 Pet Foods)"]</pre>
+    </div>
+</div>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'base',
+        securityLevel: 'loose',
+        themeVariables: {
+            fontFamily: 'Segoe UI, Arial, sans-serif',
+            fontSize: '14px',
+            primaryColor: '#e8f5ee',
+            primaryTextColor: '#111111',
+            primaryBorderColor: '#2e7d5b',
+            lineColor: '#2c3e36',
+            secondaryColor: '#fff8e7',
+            tertiaryColor: '#f4f7f6'
+        },
+        flowchart: {
+            htmlLabels: true,
+            curve: 'linear',
+            nodeSpacing: 42,
+            rankSpacing: 48,
+            padding: 12
+        },
+        er: {
+            fontSize: 13.5,
+            nodeSpacing: 40,
+            rankSpacing: 45,
+            entityPadding: 10
+        },
+        sequence: {
+            actorMargin: 35,
+            boxMargin: 10,
+            messageMargin: 30,
+            noteMargin: 10,
+            messageFontSize: 13,
+            actorFontSize: 13
+        }
+    });
+</script>
+
+<script>
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.style.display = 'block';
+        setTimeout(() => { t.style.display = 'none'; }, 3200);
+    }
+
+    function toggleDrawer(id) {
+        const el = document.getElementById(id);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function copyXmlCode(textareaId) {
+        const txt = document.getElementById(textareaId);
+        txt.select();
+        navigator.clipboard.writeText(txt.value);
+        showToast('Draw.io XML copied to clipboard! Paste directly into diagrams.net');
+    }
+
+    function openDiagramInDrawio(textareaId) {
+        const xml = document.getElementById(textareaId).value;
+        const encoded = encodeURIComponent(xml);
+        window.open('https://app.diagrams.net/#R' + encoded, '_blank');
+    }
+
+    function openAllInDrawio() {
+        window.open('https://app.diagrams.net/', '_blank');
+        showToast('Opening diagrams.net — drag & drop "FurBetterChoice_All_Diagrams.drawio" into the browser!');
+    }
+
+    async function svgToCanvasBlob(containerId) {
+        const container = document.getElementById(containerId);
+        const svg = container.querySelector('svg');
+        if (!svg) return null;
+
+        const bbox = svg.getBoundingClientRect();
+        const scale = 3;
+        const pad = 24;
+        const width = Math.ceil(bbox.width + pad * 2);
+        const height = Math.ceil(bbox.height + pad * 2);
+
+        const clone = svg.cloneNode(true);
+        clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        clone.setAttribute('width', bbox.width);
+        clone.setAttribute('height', bbox.height);
+
+        const svgData = new XMLSerializer().serializeToString(clone);
+        const svgUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
+
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = width * scale;
+                canvas.height = height * scale;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.scale(scale, scale);
+                ctx.drawImage(img, pad, pad, bbox.width, bbox.height);
+                canvas.toBlob((blob) => resolve(blob), 'image/png');
+            };
+            img.src = svgUrl;
+        });
+    }
+
+    async function copyDiagramPng(containerId, filename) {
+        try {
+            const blob = await svgToCanvasBlob(containerId);
+            await navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': blob })
+            ]);
+            showToast('Copied 300-DPI PNG to clipboard! Press Ctrl + V in MS Word.');
+        } catch (err) {
+            alert('Direct clipboard copy is restricted in some browsers. Please click "Download PNG" instead.');
+        }
+    }
+
+    async function downloadDiagramPng(containerId, filename) {
+        const blob = await svgToCanvasBlob(containerId);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Downloaded ' + filename + '.png!');
+    }
+</script>
+
+</body>
+</html>

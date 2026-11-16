@@ -1,0 +1,106 @@
+<mxfile host="app.diagrams.net" modified="2026-11-12T00:00:00.000Z" agent="FurBetterChoice" version="24.0.0" type="device">
+  <diagram id="figure_7_program_flowchart_nutrition_and_allergy" name="Figure 7: Program Flowchart (Nutrition &amp; Allergy)">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="840" pageHeight="1180" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Start -->
+        <mxCell id="f7_start" value="Start Product Evaluation" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="310" y="40" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 1 -->
+        <mxCell id="f7_s1" value="Detect Pet Species (Dog / Cat) &amp; Life Stage&#xa;(Growth / Reproduction vs. Adult Maintenance)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="250" y="130" width="340" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Decision 1: Moisture -->
+        <mxCell id="f7_d1" value="Moisture %&#xa;Listed?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="335" y="230" width="170" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Left Branch: DM Calc -->
+        <mxCell id="f7_dm" value="Calculate Dry Matter (DM%)&#xa;DM% = 100 - Moisture%&#xa;Nutrient DM = (As-Fed / DM%) x 100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="70" y="360" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Right Branch: As-Fed Fallback -->
+        <mxCell id="f7_raw" value="Flag Missing Moisture&#xa;Use As-Fed Values &amp; Show Note" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="490" y="360" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Step 2: Standards Check -->
+        <mxCell id="f7_s2" value="Evaluate Against FEDIAF &amp; AAFCO Reference Tables&#xa;(Protein, Fat, Calcium, Phosphorus, Taurine &amp; Ca:P Ratio)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="210" y="485" width="420" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Decision 2: Has Pets -->
+        <mxCell id="f7_d2" value="User Has&#xa;Registered Pets?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="335" y="595" width="170" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Decision 3: Allergy Match -->
+        <mxCell id="f7_d3" value="Ingredient Matches&#xa;Pet Allergy?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="125" y="725" width="170" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Alert Box -->
+        <mxCell id="f7_alert" value="Trigger Red Glow Alert&#xa;'[Pet] is allergic to [Item]'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#D32F2F;strokeWidth=2;fontFamily=Arial;fontSize=11;fontStyle=1;fontColor=#B71C1C;" vertex="1" parent="1">
+          <mxGeometry x="40" y="860" width="220" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Safe Box -->
+        <mxCell id="f7_safe" value="Mark Safe for Pet&#xa;Include in Smarter Alternatives" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="290" y="860" width="220" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Final Step: Render -->
+        <mxCell id="f7_out" value="Compute Overall Rating &amp; Eco Packaging Score&#xa;Render ProductAnalysisScreen UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="220" y="975" width="400" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f7_end" value="End Evaluation" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E7D5B;strokeColor=#1B4D36;strokeWidth=3;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1080" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Flowchart Connectors -->
+        <mxCell id="f7_e1" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f7_start" target="f7_s1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7_e2" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f7_s1" target="f7_d1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="f7_e3" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="f7_d1" target="f7_dm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7_e4" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="f7_d1" target="f7_raw"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="f7_e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="f7_dm" target="f7_s2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7_e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="f7_raw" target="f7_s2"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="f7_e7" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f7_s2" target="f7_d2"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="f7_e8" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="f7_d2" target="f7_d3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7_e9" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.85;entryY=0;" edge="1" parent="1" source="f7_d2" target="f7_out">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="640" />
+              <mxPoint x="620" y="940" />
+              <mxPoint x="560" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="f7_e10" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="f7_d3" target="f7_alert">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="150" y="770" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f7_e11" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="f7_d3" target="f7_safe">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="400" y="770" /></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="f7_e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.2;entryY=0;" edge="1" parent="1" source="f7_alert" target="f7_out"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7_e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f7_safe" target="f7_out"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="f7_e14" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="f7_out" target="f7_end"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

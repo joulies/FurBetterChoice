@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "128237138835",
+    "project_id": "furbetterchoice",
+    "storage_bucket": "furbetterchoice.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128237138835:android:1d96888a4c999722a56e66",
+        "android_client_info": {
+          "package_name": "com.example.furbetterchoice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUd3DPyvSF6jVOqnDYUtG4u4Zus4IcabU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

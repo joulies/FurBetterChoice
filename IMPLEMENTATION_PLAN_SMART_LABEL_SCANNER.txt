@@ -1,0 +1,412 @@
+================================================================================
+FURBETTERCHOICE - DETAILED IMPLEMENTATION PLAN
+Smart Camera Label Scanner (Nutrients -> Ingredients -> AI Autocorrect ->
+Swipeable Product Scanned Sheet -> Editable Fields & Bad-Word Protection ->
+Permanent Save to Database)
+================================================================================
+
+1. OVERVIEW (HOW THE EXPERIENCE WORKS FOR THE USER)
+--------------------------------------------------------------------------------
+Currently, ProductScanner.kt scans a barcode, closes the camera, and opens
+ProductAnalysisScreen.kt.
+
+With this feature, the scanner becomes an interactive, all-in-one smart camera:
+  Step 1: User scans a product barcode.
+          -> The app looks up the product in Firestore / OpenPetFoodFacts
+             via ProductRepository.getProduct(barcode).
+          -> If found, it loads existing details (name, brand, species, life
+             stage, image, packaging, reviews).
+          -> If NOT found, it starts a new product draft with that barcode
+             and offers a quick optional "Scan Front of Bag" step (or quick
+             Dog/Cat + Life Stage selector pills) so AI can auto-fill the
+             product name, brand, species, and life stage before scanning
+             nutrients.
+
+  Step 2: Prompt to scan Nutrients first (Guaranteed Analysis).
+          -> The camera stays open and switches to live text recognition.
+          -> On-screen guide asks the user to hover over Nutrients (Crude
+             Protein, Crude Fat, Crude Fiber, Moisture, Ash, Calcium,
+             Phosphorus, Taurine, Metabolizable Energy).
+          -> Live Nutrient Checklist pills (Protein ✓, Fat ✓, Moisture ?,
+             Calcium ?) show in real time which key FEDIAF/AAFCO nutrients
+             were captured so the user knows immediately if they need to tilt
+             the bag slightly before moving on.
+          -> Multi-frame stabilization reads several frames inside the guide
+             box, prioritizes English text, and captures cleanly.
+          -> AI autocorrects OCR typos and extracts strict numeric values.
+
+  Step 3: Prompt to scan Ingredients next.
+          -> Guide switches to "Now hover over the Ingredients list".
+          -> English-first language check removes non-English translations on
+             bilingual bags.
+          -> AI autocorrects misspelled ingredient words into a clean text
+             string.
+
+  Step 4: Swipeable Bottom Sheet (Almost Full Screen).
+          -> A pop-up sheet rises from the bottom of the camera screen.
+          -> Peek/Half state: shows scan progress while keeping camera visible.
+          -> Swiped up (~92-95% screen height): displays the exact Product
+             Scanned layout (ProductHeroHeader, ProductTabsHeader, Description
+             tab with FEDIAF & AAFCO assessments + filtered pet selector,
+             Ingredients tab with allergy checks, Alternatives, Reviews).
+          -> Swiped back down: lets user return to the camera to rescan.
+
+  Step 5: Free Editing With Small Pencil Icons + Strict Validation.
+          -> Small pencil icons let the user edit Product Info, Nutrients, and
+             Ingredients directly inside the sheet.
+          -> Nutrients ONLY accept and store numbers (Double).
+          -> Ingredients ONLY accept and store text strings (String).
+          -> Real-time bad-word detection highlights inappropriate words in red
+             and blocks submission until removed (and is reused in Reviews too).
+
+  Step 6: Permanent "Save to Database" Button With Accuracy Reminder & Safe Merge.
+          -> Once scanning is complete (and no bad words exist), the user can
+             tap "Save Product to Database".
+          -> A confirmation dialog appears with a clear accuracy reminder
+             and a "Before vs. After" change summary so the user can recheck
+             all entered/changed information before saving.
+          -> Confirming safely merges changes into Firestore, records an
+             edit_history backup snapshot, and supports offline draft retry if
+             store signal drops.
+
+
+2. DEPENDENCIES & AI KEY SECURITY
+--------------------------------------------------------------------------------
+Files to modify:
+  - gradle/libs.versions.toml
+  - app/build.gradle.kts
+
+Libraries to add:
+  1. ML Kit Text Recognition (100% Free, On-Device / Offline):
+     - com.google.mlkit:text-recognition:16.0.1
+     - Used inside CameraX MlKitAnalyzer / high-res capture to read text
+       blocks from the camera feed.
+
+  2. ML Kit Language Identification (100% Free, On-Device / Offline):
+     - com.google.mlkit:language-id:17.0.6
+     - Identifies the language of each detected text block so English ("en")
+       is prioritized before AI processing.
+
+  3. AI Autocorrect & Structured Parsing (Free Tier + Key Protection + Backup):
+     - Primary: Google Gemini Flash via Firebase AI Logic (Gemini Developer API
+       free tier).
+       * Note: Use the Gemini Developer API backend (free tier), NOT Vertex AI
+         (which requires a paid Blaze plan).
+     - API Key Protection: Enable Firebase App Check with Firebase AI Logic
+       (or proxy calls through a lightweight Firebase Cloud Function) so no raw
+       Gemini API key is ever hardcoded or extractable from the APK.
+     - Backup: Built-in local/offline pet-food autocorrect & regex parser so
+       the feature still works without internet or if free API quota is hit.
+
+
+3. NEW FILES TO CREATE (API / DOMAIN LAYER)
+--------------------------------------------------------------------------------
+A. app/src/main/java/com/example/furbetterchoice/api/LabelTextLanguageFilter.kt
+   Purpose:
+   - Receives ML Kit Text blocks (each block has text + bounding box).
+   - Filters blocks to ONLY keep blocks whose bounding box overlaps the
+     scanner's center targeting frame (prevents reading unrelated marketing
+     text on the side of the bag).
+   - Runs ML Kit LanguageIdentification.getClient() on each block:
+     * Priority 1: Blocks identified as English ("en") with confidence >= 0.5
+       or containing common English pet-food keywords ("crude", "protein",
+       "ingredients", "moisture", "fiber", "fibre", "calcium").
+     * Priority 2: Undetermined short fragments / numeric-only blocks (e.g.
+       "26.0%", "10.0%") positioned near English headers.
+     * Excludes non-English blocks (e.g., French, Spanish, Japanese) whenever
+       English blocks are present.
+     * Fallback: If zero English blocks exist on a foreign-only label, passes
+       the highest-confidence text to AI and asks it to translate/normalize
+       into English.
+
+B. app/src/main/java/com/example/furbetterchoice/api/LabelAiCorrectionService.kt
+   Purpose:
+   - Cleans OCR mistakes and converts raw text into app data structures.
+   - Three main functions:
+     1) parseAndCorrectFrontOfBag(rawEnglishText: String): ScannedFrontInfoResult
+        - Optional quick-fill when a scanned barcode is not in Firestore yet.
+        - Extracts productName, brand, species (Dog / Cat), and lifeStage
+          (Adult, Puppy, Kitten, Senior, All Life Stages).
+
+     2) parseAndCorrectNutrients(rawEnglishText: String): ScannedNutrientsResult
+        - Fixes common OCR errors (e.g. "Crvde Pr0tein" -> "Crude Protein",
+          "M01sture" -> "Moisture", "O.8%" -> "0.8%", "26.O%" -> "26.0%").
+        - Maps recognized items strictly to numeric Doubles + units:
+          * crudeProtein (%)
+          * crudeFat (%)
+          * crudeFiber (%)
+          * moisture (%)
+          * ash (%)
+          * calcium (%)
+          * phosphorus (%)
+          * taurine (%)
+          * metabolizableEnergy (Double, kcal/kg)
+        - Sanity checks before returning:
+          * Percentage nutrients must be > 0.0 and <= 100.0.
+          * Catches missing decimal points (e.g. Calcium "125%" -> flags/fixes
+            to "1.25%", Moisture "120%" -> "12.0%").
+          * Distinguishes "Min" / "Max" columns and ignores feeding guide lines
+            like "cups/day".
+          * Tracks confidence flags for any suspicious/ambiguous number so the
+            UI can highlight it gently in amber for quick user review.
+
+     3) autocorrectIngredients(rawEnglishText: String): ScannedIngredientsResult
+        - Fixes misspelled ingredient words (e.g. "Chlcken MeaI" ->
+          "Chicken Meal", "Br0wn Rlce" -> "Brown Rice", "Taur1ne" -> "Taurine").
+        - Removes stray OCR symbols, percentages/headers if accidentally
+          captured, and formats into a clean comma-separated String.
+        - Runs offline fuzzy/dictionary autocorrect if AI network call fails.
+
+C. app/src/main/java/com/example/furbetterchoice/api/ContentModerationFilter.kt
+   Purpose:
+   - Detects inappropriate/bad words in any user-editable text field AND in
+     product reviews (ReviewsTabContent / ReviewsFormSection).
+   - Normalizes text before checking so disguised words are also caught:
+     * Converts common look-alike characters ("@" -> "a", "0" -> "o", "1"/"!"
+       -> "i", "3" -> "e", "$" -> "s", "*" / "." between letters).
+     * Checks whole words and obfuscated tokens against a curated profanity
+       word list, while avoiding false positives on real pet-food words (e.g.,
+       "ash", "bass", "cassava", "cockatiel", "shiitake" via safe-list).
+   - Returns:
+     * containsBadWords: Boolean
+     * matchedWords: List<String>
+     * highlightRanges: List<IntRange> (exact start..end character positions in
+       the original text so the UI can highlight them in red).
+
+
+4. SCANNER & CAMERA ACCURACY ENHANCEMENTS
+--------------------------------------------------------------------------------
+File to update:
+  - app/src/main/java/com/example/furbetterchoice/ui/ProductScanner.kt
+
+Planned upgrades:
+  1. Guided Scan State Machine:
+     - BARCODE_SCANNING: Default barcode scanner.
+     - FETCHING_PRODUCT: Shows quick loading pill while querying ProductRepository.
+     - SCANNING_FRONT_OF_BAG (optional when barcode not in DB): Lets user scan
+       front packaging to auto-fill Name, Brand, Dog/Cat, and Life Stage (or
+       pick manually / skip).
+     - SCANNING_NUTRIENTS: Live OCR + language filter focused on Guaranteed
+       Analysis. Shows a Live Nutrient Checklist (Protein ✓, Fat ✓, Fiber ✓,
+       Moisture ?, Calcium ?, Phosphorus ?) + "Capture" + "Skip".
+     - SCANNING_INGREDIENTS: Live OCR + language filter focused on Ingredients.
+       Shows detected word preview + "Capture" + "Skip".
+     - REVIEWING_RESULT: Sheet expands smoothly to show full Product Scanned
+       assessment; user can still swipe sheet down to rescan either section.
+
+  2. Accuracy Improvements in CameraX:
+     - Region-of-interest crop: Only process ML Kit text blocks whose center
+       falls inside the visible targeting box.
+     - Multi-frame stabilization: Collect 3-5 consecutive frames (~0.8-1.2s)
+       and keep the consensus/most consistent reading before calling AI.
+     - High-resolution ImageCapture option when the user taps "Capture" (or
+       on auto-lock) so tiny decimals like "0.8%" are crisp.
+     - Tap-to-focus on PreviewView (cameraController.cameraControl.startFocusAndMetering)
+       and a Flashlight / Torch toggle icon button for shiny/dim packaging.
+
+
+5. VIEWMODEL, SAFE MERGING & OFFLINE DRAFT PROTECTION
+--------------------------------------------------------------------------------
+File to update:
+  - app/src/main/java/com/example/furbetterchoice/ui/AppViewModel.kt
+
+Planned additions:
+  - Hold a ScanSessionState flow storing:
+    * scannedBarcode: String
+    * baseDatabaseProduct: Product? (original DB snapshot, or null if new)
+    * workingProduct: Product (merged product combining DB fields + scanned
+      nutrients + scanned ingredients + any manual user pencil edits)
+    * lowConfidenceNutrientKeys: Set<String>
+    * scanStep: ScanStep
+    * isAiProcessing: Boolean
+    * isSaving: Boolean
+    * isSavedToDatabase: Boolean
+    * saveError: String?
+  - Safe Field-by-Field Merge:
+    * Never blindly wipes untouched DB fields (keeps existing imageUrl,
+      brandHistory, packaging* fields, and unedited nutrients when only part
+      of a label was scanned).
+    * Overlays newly scanned & AI-corrected nutrition entries,
+      metabolizableEnergy, and ingredients string onto workingProduct.
+    * Every edit via pencil icon updates workingProduct immediately so FEDIAF,
+      AAFCO, IngredientAnalyzer, and ScoringSystem recalculate in real time.
+  - Offline Draft & Duplicate-Save Guard:
+    * Caches workingProduct locally (SharedPreferences JSON draft keyed by
+      barcode) so if store signal drops during save, the user sees a "Retry
+      Save" button without losing their scanned data.
+    * Disables double-taps while isSaving == true.
+  - Permanent save method:
+    * saveScannedProductToDatabase(product: Product, onResult: (Result<Unit>) -> Unit)
+    * Re-validates that:
+      1) Nutrients contain valid numeric Doubles only.
+      2) Ingredients is a valid String.
+      3) ContentModerationFilter reports ZERO bad words across all text fields.
+    * Calls firestoreRepository.saveOrUpdateProductSafely(product, baseDatabaseProduct)
+      and updates _productDetailsCache immediately.
+
+
+6. SWIPEABLE BOTTOM SHEET + REUSED PRODUCT SCANNED LAYOUT
+--------------------------------------------------------------------------------
+Files to update:
+  - app/src/main/java/com/example/furbetterchoice/ui/ProductAnalysisScreen.kt
+  - app/src/main/java/com/example/furbetterchoice/ui/ProductScanner.kt
+  - app/src/main/java/com/example/furbetterchoice/MainActivity.kt
+
+How it will be structured cleanly without duplicating code:
+  1. Refactor ProductAnalysisScreen.kt:
+     - Extract the scrollable product header + tabs (Description, Ingredients,
+       Alternatives, Reviews) into a reusable composable:
+       ProductAnalysisContentBody(
+           product: Product,
+           alternatives: List<Product>,
+           viewModel: AppViewModel,
+           isEditModeEnabled: Boolean = false,
+           lowConfidenceKeys: Set<String> = emptySet(),
+           moderationState: ProductModerationState = ...,
+           onEditProductInfo: () -> Unit = {},
+           onEditNutrients: (String?) -> Unit = {},
+           onEditIngredients: () -> Unit = {},
+           ...
+       )
+     - Normal navigation route ("details/{barcode}") keeps using this same body
+       with full-screen top bar and pull-to-refresh.
+     - Scanner screen embeds this exact same body inside a swipeable sheet!
+
+  2. Swipeable Almost-Full-Screen Bottom Sheet in ProductScanner.kt:
+     - Use Material 3 BottomSheetScaffold (or custom anchoredDraggable sheet
+       matching the app's rounded 28.dp surface & subtleCardShadow styling):
+       * Peek height (~140.dp-170.dp): Always shows drag handle, current step
+         status, live nutrient checklist / progress, and an "Expand / View
+         Assessment" chip while camera stays active above.
+       * Expanded height (~92%-95% of screen height, just below status bar):
+         Smoothly slides up over the camera and displays the full
+         ProductAnalysisContentBody with FEDIAF/AAFCO assessments, pet
+         selector, and ingredient analysis!
+     - Navigation adjustment in MainActivity.kt:
+       * Scanning a barcode in "scanner" no longer pops the scanner screen
+         immediately; it keeps the user in the interactive scanner + bottom
+         sheet flow (with a Back/Close button to exit anytime).
+
+
+7. PENCIL ICON EDITING, STRICT TYPES & BAD-WORD UI HIGHLIGHTING
+--------------------------------------------------------------------------------
+Files to update:
+  - app/src/main/java/com/example/furbetterchoice/ui/ProductAnalysisScreen.kt
+  - app/src/main/java/com/example/furbetterchoice/ui/Components.kt (shared
+    ModerationVisualTransformation & review/edit dialogs)
+
+A. Small Pencil Icons (shown on the scanned sheet when in scan/edit mode):
+   1. Product Header Pencil Icon:
+      - Placed neatly beside the product title / metadata row.
+      - Opens "Edit Product Details" modal/dialog for:
+        * Product Name (String)
+        * Brand (String)
+        * Pet Type (Dog / Cat selector pills)
+        * Life Stage (Adult / Puppy / Early Growth (<14 wks) / Late Growth (>=14 wks)
+          / Kitten / Senior / All Life Stages selector pills)
+        * Food Type (Dry Food / Wet Food / Treat / Complementary)
+   2. Nutrients Pencil Icons:
+      - Small pencil icon in the FEDIAF / AAFCO card header (opens "Edit
+        Nutrients" dialog listing Crude Protein, Crude Fat, Crude Fiber,
+        Moisture, Ash, Calcium, Phosphorus, Taurine, Metabolizable Energy) AND
+        a small pencil icon on individual nutrient rows when expanded.
+      - STRICT NUMERIC INPUT:
+        * Uses KeyboardType.Decimal.
+        * Input filter rejects letters and invalid characters—only accepts
+          digits and a single decimal point.
+        * Validates bounds (e.g., 0.0 < value <= 100.0 for "%" nutrients;
+          > 0.0 for kcal/kg ME).
+        * Saves strictly as Double in NutrientValue.
+   3. Ingredients Pencil Icon:
+      - Small pencil icon in the Ingredients tab / section header.
+      - Opens "Edit Ingredients" dialog with multi-line String input.
+      - Saves strictly as a sanitized String.
+
+B. Bad-Word Highlighting & Submit Blocking (Scanned Sheet + Product Reviews):
+   - Real-time VisualTransformation on every text field (Product Name, Brand,
+     Food Type, Ingredients, AND ReviewsFormSection):
+     * Any character range returned by ContentModerationFilter is styled with
+       a red tinted background (Color(0xFFE53935).copy(alpha = 0.20f)) and
+       bold red text (Color(0xFFD32F2F)).
+   - Below the text field:
+     * Red error message: "Inappropriate word(s) detected: [word]. Please remove
+       highlighted words before saving."
+   - Save / Apply / Submit buttons:
+     * Edit dialog's "Apply Changes" button is disabled while bad words exist.
+     * Review form's "Submit Review" button is disabled while bad words exist.
+     * On the scanned sheet, if any field has bad words, that section shows a
+       red warning badge and the "Save to Database" button is disabled and
+       grayed out with an explanation label until fixed.
+
+
+8. PERMANENT SAVE TO DATABASE, ACCURACY REMINDER & SNAPSHOT BACKUP
+--------------------------------------------------------------------------------
+Files to update:
+  - app/src/main/java/com/example/furbetterchoice/api/FirestoreRepository.kt
+  - app/src/main/java/com/example/furbetterchoice/ui/ProductScanner.kt /
+    ProductAnalysisScreen.kt
+
+Flow:
+  1. Button state:
+     - Sticky bottom bar shows "Save Product to Database" (enabled only when
+       scan has at least nutrients or ingredients, product name & species are
+       set, ZERO bad words are detected, and not currently saving).
+     - If user is not logged in, tapping triggers LoginRequiredDialog.
+
+  2. Confirmation Dialog (Accuracy Reminder + Before-vs-After Diff):
+     - Header icon + title: "Save Product Permanently?"
+     - Highlighted Accuracy Reminder Banner (warm gold/amber info box):
+       "Accuracy Reminder: Please recheck all scanned numbers, product details,
+       and ingredients to make sure they match the physical packaging before
+       saving permanently to the database."
+     - Before-vs-After Diff Summary Card inside the dialog:
+       * Product Name, Brand, Barcode, Pet Type & Life Stage
+       * Highlights newly scanned or modified nutrients (e.g.,
+         "Crude Protein: 26.0% -> 28.0%", "Moisture: Not listed -> 10.0%")
+         and highlights any low-confidence OCR values in amber.
+       * Ingredients preview (first 2-3 lines, flagged if newly changed).
+     - Actions:
+       * "Recheck / Edit" (dismisses dialog so user can tap pencil icons or
+         swipe down to rescan)
+       * "Confirm & Save" (shows loading spinner -> saves safely -> shows
+         "Saved to Database" success feedback; if offline, shows Retry Save
+         option without losing draft).
+
+  3. Safe Save + Edit History Snapshot (FirestoreRepository):
+     - Before overwriting an existing products/{productId} document, writes a
+       lightweight backup snapshot (previous fields, updatedAt, updatedByUid)
+       to products/{productId}/edit_history.
+     - Performs a safe field-by-field merge on products/{productId} so
+       untouched existing fields are preserved.
+
+  4. Firestore Security Rules (firestore.rules):
+     - Allow any signed-in user to read/create/update products/{productId} and
+       append to edit_history, while validating in rules that text fields are
+       non-empty strings and nutrient values are valid numbers (0..100 for %).
+
+
+9. TESTING & VERIFICATION PLAN
+--------------------------------------------------------------------------------
+1. Unit Tests:
+   - LabelTextLanguageFilterTest: English prioritized over French/Spanish/other
+     blocks on bilingual labels; non-English fallback works.
+   - LabelAiCorrectionServiceTest: OCR typo autocorrect, decimal sanity checks,
+     front-of-bag parsing, and strict numeric-only nutrient parsing.
+   - ContentModerationFilterTest: catches profanity & obfuscated variations,
+     returns accurate highlight ranges, allows legitimate words ("ash", etc.).
+   - ScanMergeAndHistoryTest: verifies safe field-by-field merge preserves
+     untouched DB metadata and recalculates FEDIAF/AAFCO assessments live.
+
+2. Device / Emulator Manual Verification:
+   - Scan barcode -> (Front-of-Bag quick-fill if new) -> Nutrients hover with
+     live checklist -> Ingredients hover.
+   - Swipe bottom sheet from peek to ~95% full screen and back down.
+   - Edit Name, Nutrients (confirm letters blocked), and Ingredients with
+     pencil icons.
+   - Type a bad word in scanned product edits and in Reviews -> confirm red
+     highlighting + disabled submit button -> remove bad word -> confirm submit
+     unlocks.
+   - Tap "Save Product to Database" -> verify accuracy reminder + Before/After
+     diff dialog -> confirm save -> test offline retry banner -> reopen product
+     from Home/Search/Scanner to verify Firestore persistence & edit_history.
+================================================================================

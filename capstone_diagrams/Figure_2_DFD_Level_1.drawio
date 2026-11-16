@@ -1,0 +1,131 @@
+<mxfile host="app.diagrams.net" modified="2026-11-12T00:00:00.000Z" agent="FurBetterChoice" version="24.0.0" type="device">
+  <diagram id="figure_2_data_flow_diagram_dfd_level_1" name="Figure 2: Data Flow Diagram (DFD Level 1)">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="880" pageHeight="1020" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Top External Entity (User Only) -->
+        <mxCell id="f2_user" value="Pet Parent (User)&#xa;Guest or Registered User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="40" width="280" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Row 1: Process 1.0 & Data Store D1 -->
+        <mxCell id="f2_p1" value="1.0 Auth &amp; Profile Management&#xa;(Accounts, Pet Profiles, Allergies)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="170" width="280" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_d1" value="D1: users &amp; pets&#xa;(Firestore User &amp; Pet Profiles)" style="shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="520" y="170" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Row 2: Process 2.0 & Data Store D2 -->
+        <mxCell id="f2_p2" value="2.0 Barcode Scan &amp; Catalog Lookup&#xa;(CameraX ML Kit &amp; Firestore Query)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="310" width="280" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_d2" value="D2: products &amp; brands&#xa;(Firestore Pet Food Catalog)" style="shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="520" y="310" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Row 3: Process 3.0 (Evaluation Engine) -->
+        <mxCell id="f2_p3" value="3.0 Nutritional Assessment &amp; Allergen Engine&#xa;(FEDIAF/AAFCO DM% Calc, Ca:P &amp; Allergy Match)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="450" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Row 4: Process 4.0 (Recommender) -->
+        <mxCell id="f2_p4" value="4.0 Personalized Food Recommender&#xa;(Filter Safe &amp; Compatible Alternatives)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="590" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Row 5: Process 5.0 & Data Store D3 -->
+        <mxCell id="f2_p5" value="5.0 Saved Wishlist &amp; Comparison Matrix&#xa;(Side-by-Side Nutrient &amp; Eco Matrix)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="730" width="280" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_d3" value="D3: saved_products&#xa;(User Saved Wishlist Items)" style="shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="520" y="730" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Row 6: Process 6.0 & Data Store D4 -->
+        <mxCell id="f2_p6" value="6.0 Community Contributions &amp; Reviews&#xa;(Submit Missing Foods, Photos &amp; Ratings)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E1EFEA;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="120" y="870" width="280" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_d4" value="D4: contributions &amp; reviews&#xa;(Community Submissions &amp; Ratings)" style="shape=partialRectangle;whiteSpace=wrap;html=1;top=1;bottom=1;left=1;right=0;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="520" y="870" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Clean Non-Crossing Connectors -->
+        <!-- User -> P1 -->
+        <mxCell id="f2_e1" value="1. Credentials &amp; Pet Info" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2_user" target="f2_p1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- P1 <-> D1 -->
+        <mxCell id="f2_e2" value="User &amp; Pet Docs" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;startFill=1;" edge="1" parent="1" source="f2_p1" target="f2_d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- P1 -> P2 (Left Spine Flow) -->
+        <mxCell id="f2_e3" value="2. Active User Session" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2_p1" target="f2_p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- P2 <-> D2 -->
+        <mxCell id="f2_e4" value="Barcode / Name Lookup" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;startFill=1;" edge="1" parent="1" source="f2_p2" target="f2_d2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- P2 -> P3 -->
+        <mxCell id="f2_e5" value="3. Product &amp; Nutrient Data" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2_p2" target="f2_p3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- D1 -> P3 (Pet Allergies routed cleanly via x=460) -->
+        <mxCell id="f2_e6" value="Pet Allergies &amp; Life Stage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="f2_d1" target="f2_p3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="275" />
+              <mxPoint x="460" y="275" />
+              <mxPoint x="460" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- P3 -> P4 -->
+        <mxCell id="f2_e7" value="4. Evaluation &amp; Safety Flags" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2_p3" target="f2_p4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- D2 -> P4 (Catalog items routed via x=660) -->
+        <mxCell id="f2_e8" value="Catalog Candidates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="f2_d2" target="f2_p4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="627" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- P4 -> P5 -->
+        <mxCell id="f2_e9" value="5. Selected Products to Compare" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2_p4" target="f2_p5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- P5 <-> D3 -->
+        <mxCell id="f2_e10" value="Saved Wishlist Sync" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;startFill=1;" edge="1" parent="1" source="f2_p5" target="f2_d3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- P5 -> P6 -->
+        <mxCell id="f2_e11" value="6. Product Feedback / Missing Barcode" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2_p5" target="f2_p6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- P6 -> D4 -->
+        <mxCell id="f2_e12" value="Store Photos &amp; Reviews" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="f2_p6" target="f2_d4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Left Return Channel to User (Reports & Matrices) -->
+        <mxCell id="f2_e13" value="Nutritional Report, Allergen Glow &amp; Matrix" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="f2_p3" target="f2_user">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="490" />
+              <mxPoint x="50" y="72" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Firestore importer secrets, venv, and generated previews
+firestore-importer/serviceAccountKey*.json
+firestore-importer/*firebase-adminsdk*.json
+firestore-importer/.venv/
+firestore-importer/__pycache__/
+firestore-importer/dry_run_preview.json

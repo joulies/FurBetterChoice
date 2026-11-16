@@ -1,0 +1,75 @@
+<mxfile host="app.diagrams.net" modified="2026-11-12T00:00:00.000Z" agent="FurBetterChoice" version="24.0.0" type="device">
+  <diagram id="figure_6_sequence_diagram_scan_and_evaluation" name="Figure 6: Sequence Diagram (Scan &amp; Evaluation)">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="880" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Lifeline Headers -->
+        <mxCell id="f6_h1" value="Pet Parent&#xa;(User)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_h2" value="Scanner &amp; UI&#xa;(Compose)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_h3" value="AppViewModel&#xa;(StateFlow)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="365" y="40" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_h4" value="Cloud Firestore&#xa;(Products &amp; Pets)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="530" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_h5" value="Nutrition &amp; Allergy&#xa;Engines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="700" y="40" width="135" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Vertical Dashed Lifelines -->
+        <mxCell id="f6_l1" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="100" y="90" as="sourcePoint"/><mxPoint x="100" y="780" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_l2" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="262" y="90" as="sourcePoint"/><mxPoint x="262" y="780" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_l3" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="427" y="90" as="sourcePoint"/><mxPoint x="427" y="780" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_l4" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="595" y="90" as="sourcePoint"/><mxPoint x="595" y="780" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_l5" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="767" y="90" as="sourcePoint"/><mxPoint x="767" y="780" as="targetPoint"/></mxGeometry>
+        </mxCell>
+
+        <!-- Sequence Messages (Spaced 65px vertically so labels never collide) -->
+        <mxCell id="f6_m1" value="1. Scans barcode with CameraX" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="100" y="140" as="sourcePoint"/><mxPoint x="262" y="140" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m2" value="2. ML Kit decodes barcode string" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="262" y="205" as="sourcePoint"/><mxPoint x="427" y="205" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m3" value="3. Query product by barcode / ID" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="427" y="270" as="sourcePoint"/><mxPoint x="595" y="270" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m4" value="4. Return Product &amp; Nutrient Map" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="595" y="335" as="sourcePoint"/><mxPoint x="427" y="335" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m5" value="5. Fetch User Pet Profiles &amp; Allergies" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="427" y="400" as="sourcePoint"/><mxPoint x="595" y="400" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m6" value="6. Return Pet List &amp; Recorded Allergies" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="595" y="465" as="sourcePoint"/><mxPoint x="427" y="465" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m7" value="7. Evaluate FEDIAF, AAFCO &amp; Allergens" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="427" y="530" as="sourcePoint"/><mxPoint x="767" y="530" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m8" value="8. Return DM% Tables, Scores &amp; Alerts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="767" y="600" as="sourcePoint"/><mxPoint x="427" y="600" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m9" value="9. Emit ProductUIState.Success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="427" y="665" as="sourcePoint"/><mxPoint x="262" y="665" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f6_m10" value="10. Display Report &amp; Allergen Warnings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#1B4D36;labelBackgroundColor=#FFFFFF;edgeStyle=none;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="262" y="730" as="sourcePoint"/><mxPoint x="100" y="730" as="targetPoint"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

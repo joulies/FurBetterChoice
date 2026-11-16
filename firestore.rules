@@ -1,0 +1,190 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function verifiedUser() {
+      return signedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function isOptionalString(data, key, maxLen) {
+      return !(key in data) || (data[key] is string && data[key].size() <= maxLen);
+    }
+
+    function isValidProductPayload(productId) {
+      let data = request.resource.data;
+      return data.barcode is string
+        && data.barcode.size() > 0
+        && data.barcode.size() <= 64
+        && (!('productId' in data) || (data.productId is string && data.productId == productId))
+        && data.productName is string
+        && data.productName.size() >= 2
+        && data.productName.size() <= 200
+        && isOptionalString(data, 'brand', 150)
+        && isOptionalString(data, 'pet', 60)
+        && isOptionalString(data, 'lifeStage', 80)
+        && isOptionalString(data, 'foodType', 80)
+        && isOptionalString(data, 'ingredients', 5000)
+        && (!('nutrition' in data) || (data.nutrition is map && data.nutrition.size() <= 40))
+        && isOptionalString(data, 'imageUrl', 1000)
+        && isOptionalString(data, 'nutritionPhotoUrl', 1000)
+        && isOptionalString(data, 'ingredientsPhotoUrl', 1000)
+        && isOptionalString(data, 'barcodePhotoUrl', 1000)
+        && isOptionalString(data, 'brandHistory', 5000)
+        && isOptionalString(data, 'packagingMaterial', 120)
+        && isOptionalString(data, 'packagingType', 120)
+        && isOptionalString(data, 'packagingRecyclability', 120)
+        && isOptionalString(data, 'packagingBiodegradability', 120)
+        && (!('metabolizableEnergy' in data) || (data.metabolizableEnergy is number && data.metabolizableEnergy > 0 && data.metabolizableEnergy <= 20000))
+        && isOptionalString(data, 'metabolizableEnergyUnit', 40)
+        && 'updatedByUid' in data
+        && data.updatedByUid == request.auth.uid;
+    }
+
+    function isValidPetPayload() {
+      let data = request.resource.data;
+      return data.petName is string
+        && data.petName.size() > 0
+        && data.petName.size() <= 100
+        && data.breed is string
+        && data.breed.size() > 0
+        && data.breed.size() <= 100
+        && data.weight is string
+        && data.weight.size() > 0
+        && data.weight.size() <= 30
+        && (!('age' in data) || (data.age is number && data.age >= 0 && data.age <= 60))
+        && isOptionalString(data, 'type', 30)
+        && isOptionalString(data, 'birthday', 30)
+        && isOptionalString(data, 'sex', 20)
+        && isOptionalString(data, 'allergies', 500)
+        && isOptionalString(data, 'imageUrl', 1000);
+    }
+
+    // =========================
+    // BRANDS CATALOG
+    // =========================
+    match /brands/{brandId} {
+      // Anyone can read brand history
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // =========================
+    // GLOBAL PRODUCTS
+    // =========================
+    match /products/{productId} {
+
+      // Anyone can read the product catalog (needed for barcode check, search, and scanner)
+      allow read: if true;
+
+      // Verified signed-in users can create a new product (from Community Workspace or Smart Label Scanner)
+      allow create: if verifiedUser() && isValidProductPayload(productId);
+
+      // Verified signed-in users can update product label data without changing the barcode
+      allow update: if verifiedUser()
+                    && isValidProductPayload(productId)
+                    && request.resource.data.barcode == resource.data.barcode;
+
+      // Products cannot be deleted from client apps
+      allow delete: if false;
+
+      // =========================
+      // PRODUCT EDIT HISTORY
+      // =========================
+      match /edit_history/{historyId} {
+        allow read: if signedIn();
+        allow create: if verifiedUser()
+                      && request.resource.data.savedByUid == request.auth.uid;
+        allow update, delete: if false;
+      }
+
+      // =========================
+      // PRODUCT REVIEWS
+      // =========================
+      match /reviews/{userId} {
+
+        // Anyone can read reviews
+        allow read: if true;
+
+        // Verified user can create or update only their own review (rating 1..5)
+        allow create, update: if isOwner(userId)
+                              && verifiedUser()
+                              && request.resource.data.userId == userId
+                              && request.resource.data.rating is number
+                              && request.resource.data.rating >= 1
+                              && request.resource.data.rating <= 5
+                              && isOptionalString(request.resource.data, 'userName', 100)
+                              && isOptionalString(request.resource.data, 'comment', 2000);
+
+        // User can delete their own review
+        allow delete: if isOwner(userId);
+      }
+
+      // =========================
+      // COMMUNITY LABEL VERIFICATIONS
+      // =========================
+      match /verifications/{userId} {
+        allow read: if true;
+        allow create, update: if isOwner(userId)
+                              && verifiedUser()
+                              && request.resource.data.userId == userId;
+        allow delete: if isOwner(userId);
+      }
+
+      // =========================
+      // COMMUNITY MISTAKE REPORTS
+      // =========================
+      match /reports/{userId} {
+        allow read: if isOwner(userId);
+        allow create, update: if isOwner(userId)
+                              && verifiedUser()
+                              && request.resource.data.userId == userId
+                              && isOptionalString(request.resource.data, 'reason', 120)
+                              && isOptionalString(request.resource.data, 'details', 1000);
+        allow delete: if isOwner(userId);
+      }
+    }
+
+    // =========================
+    // USER PROFILE
+    // =========================
+    match /users/{userId} {
+
+      // Users can read/delete their own profile; cannot self-modify privileged fields (isDisabled, role)
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId)
+                    && !('isDisabled' in request.resource.data)
+                    && !('role' in request.resource.data);
+      allow update: if isOwner(userId)
+                    && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isDisabled', 'role']);
+      allow delete: if isOwner(userId);
+
+      // =========================
+      // PETS
+      // =========================
+      match /pets/{petId} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidPetPayload();
+      }
+
+      // =========================
+      // SAVED PRODUCTS
+      // =========================
+      match /saved_products/{barcode} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId)
+                              && request.resource.data.barcode is string
+                              && request.resource.data.barcode.size() > 0
+                              && request.resource.data.barcode.size() <= 64;
+      }
+    }
+  }
+}

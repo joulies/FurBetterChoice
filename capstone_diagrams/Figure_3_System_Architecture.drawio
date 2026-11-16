@@ -1,0 +1,93 @@
+<mxfile host="app.diagrams.net" modified="2026-11-12T00:00:00.000Z" agent="FurBetterChoice" version="24.0.0" type="device">
+  <diagram id="figure_3_system_architecture_diagram_mvvm" name="Figure 3: System Architecture Diagram (MVVM)">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="860" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Layer 1 Background & Header -->
+        <mxCell id="f3_l1_bg" value="1. Presentation Layer (Jetpack Compose UI)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="740" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_u1" value="ProductScanner&#xa;(CameraX &amp; ML Kit)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="80" y="82" width="220" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_u2" value="MainDashboard&#xa;(Search &amp; History)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="320" y="82" width="220" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_u3" value="ProductAnalysisScreen&#xa;(Nutrients, Allergens, Eco)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="560" y="82" width="220" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_u4" value="MyPets &amp; SuitableFood&#xa;(Profiles &amp; Allergies)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="80" y="134" width="220" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_u5" value="CompareScreen&#xa;(2-3 Product Matrix)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="320" y="134" width="220" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_u6" value="Profile, Feedback &amp; Settings&#xa;(Contributions &amp; Reviews)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="560" y="134" width="220" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 2 Background & Header -->
+        <mxCell id="f3_l2_bg" value="2. State &amp; ViewModel Layer" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="60" y="250" width="740" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_vm" value="AppViewModel (Kotlin Coroutines + StateFlow Observables)&#xa;Manages ProductUIState, PetListState, AuthState, SavedState &amp; CompareState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="80" y="290" width="700" height="54" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 3 Background & Header -->
+        <mxCell id="f3_l3_bg" value="3. Nutritional Assessment &amp; Domain Evaluation Layer" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#E8F5EE;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="60" y="420" width="740" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_d1" value="NutritionAssessmentEngine&#xa;(FEDIAF DM% Standards)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="80" y="462" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_d2" value="AafcoAssessmentEngine&#xa;(AAFCO Nutrient Profiles)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="320" y="462" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_d3" value="Ingredient &amp; Recommender&#xa;(Allergens &amp; ScoringSystem)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="560" y="462" width="220" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 4 Background & Header -->
+        <mxCell id="f3_l4_bg" value="4. Data &amp; Repository Layer" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#F4F7F6;strokeColor=#2E7D5B;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="60" y="595" width="740" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_r1" value="ProductRepository&#xa;(Barcode, ID &amp; Search Queries)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="80" y="637" width="335" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_r2" value="FirestoreRepository&#xa;(Users, Pets, Saved, Reviews, Contributions &amp; Brands)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D5B;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="445" y="637" width="335" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 5 Background & Header -->
+        <mxCell id="f3_l5_bg" value="5. Device Hardware &amp; Cloud Services" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;spacingTop=6;fillColor=#FFF8E7;strokeColor=#D4A017;strokeWidth=2;fontFamily=Arial;fontSize=13;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="60" y="770" width="740" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_c1" value="CameraX + Google ML Kit&#xa;(On-Device Barcode Vision)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4A017;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="80" y="812" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_c2" value="Firebase Authentication&#xa;(Email &amp; Google Sign-In)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4A017;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="320" y="812" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_c3" value="Cloud Firestore NoSQL DB&#xa;(Real-time Cloud Persistence)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D4A017;strokeWidth=1.5;fontFamily=Arial;fontSize=11.5;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="560" y="812" width="220" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Clean Vertical Layer Connectors -->
+        <mxCell id="f3_e1" value="UI Events &amp; StateFlow" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="f3_l1_bg" target="f3_l2_bg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_e2" value="Evaluates Nutrients &amp; Allergies" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="f3_l2_bg" target="f3_l3_bg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_e3" value="Repository Data Requests" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="f3_l3_bg" target="f3_l4_bg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_e4" value="Cloud Sync &amp; Auth" style="edgeStyle=none;rounded=0;html=1;strokeColor=#2C3E36;strokeWidth=1.5;fontFamily=Arial;fontSize=11;fontColor=#111111;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="f3_l4_bg" target="f3_l5_bg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
