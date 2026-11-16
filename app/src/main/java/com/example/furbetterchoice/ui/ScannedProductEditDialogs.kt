@@ -56,7 +56,7 @@ fun EditScannedProductInfoDialog(
     pendingIngredientsPhotoUri: String? = null,
     pendingBarcodePhotoUri: String? = null,
     onDismiss: () -> Unit,
-    onApply: (productName: String, brand: String, pet: String, lifeStage: String, foodType: String, imageUrl: String, nutritionPhotoUrl: String, ingredientsPhotoUrl: String, barcodePhotoUrl: String) -> Unit
+    onApply: (productName: String, brand: String, pet: String, lifeStage: String, foodType: String, imageUrl: String, nutritionPhotoUrl: String, ingredientsPhotoUrl: String, barcodePhotoUrl: String, packagingType: String, packagingMaterial: String, packagingRecyclability: String, packagingBiodegradability: String) -> Unit
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
@@ -74,6 +74,10 @@ fun EditScannedProductInfoDialog(
     }
     var lifeStage by remember(product) { mutableStateOf(product.lifeStage.ifBlank { "Adult" }) }
     var foodType by remember(product) { mutableStateOf(product.foodType.ifBlank { "Dry Food" }) }
+    var packagingType by remember(product) { mutableStateOf(product.packagingType) }
+    var packagingMaterial by remember(product) { mutableStateOf(product.packagingMaterial) }
+    var packagingRecyclability by remember(product) { mutableStateOf(product.packagingRecyclability) }
+    var packagingBiodegradability by remember(product) { mutableStateOf(product.packagingBiodegradability) }
 
     var frontPhotoUrl by remember(product) { mutableStateOf(product.imageUrl.orEmpty()) }
     var nutritionPhotoUrl by remember(product) { mutableStateOf(product.nutritionPhotoUrl.orEmpty()) }
@@ -199,7 +203,11 @@ fun EditScannedProductInfoDialog(
                 finalFront.trim(),
                 finalNutrition.trim(),
                 finalIngredients.trim(),
-                finalBarcode.trim()
+                finalBarcode.trim(),
+                packagingType.trim(),
+                packagingMaterial.trim(),
+                packagingRecyclability.trim(),
+                packagingBiodegradability.trim()
             )
         }
     }
@@ -579,6 +587,79 @@ fun EditScannedProductInfoDialog(
                         )
                     }
                 }
+
+                Text(
+                    text = "Packaging Type (Can, Pouch, etc.)",
+                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)
+                )
+                Row(
+                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    listOf("Can", "Pouch", "Bag", "Tub", "Tetra Pak").forEach { option ->
+                        FilterChip(
+                            selected = packagingType.equals(option, ignoreCase = true),
+                            onClick = {
+                                packagingType = option
+                                when (option) {
+                                    "Can" -> {
+                                        packagingMaterial = "Aluminum / Tin"
+                                        packagingRecyclability = "Recyclable"
+                                        packagingBiodegradability = "Non-Biodegradable"
+                                    }
+                                    "Pouch" -> {
+                                        packagingMaterial = "Flexible Plastic / Foil"
+                                        packagingRecyclability = "Difficult to Recycle"
+                                        packagingBiodegradability = "Non-Biodegradable"
+                                    }
+                                    "Bag" -> {
+                                        packagingMaterial = "Plastic Film / Paper"
+                                        packagingRecyclability = "Difficult to Recycle"
+                                        packagingBiodegradability = "Non-Biodegradable"
+                                    }
+                                    "Tub" -> {
+                                        packagingMaterial = "Plastic"
+                                        packagingRecyclability = "Recyclable"
+                                        packagingBiodegradability = "Non-Biodegradable"
+                                    }
+                                    "Tetra Pak" -> {
+                                        packagingMaterial = "Cardboard / Composite"
+                                        packagingRecyclability = "Recyclable"
+                                        packagingBiodegradability = "Non-Biodegradable"
+                                    }
+                                }
+                            },
+                            label = { Text(option) }
+                        )
+                    }
+                }
+
+                OutlinedTextField(
+                    value = packagingMaterial,
+                    onValueChange = { packagingMaterial = it },
+                    label = { Text("Packaging Material") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp)
+                )
+
+                OutlinedTextField(
+                    value = packagingRecyclability,
+                    onValueChange = { packagingRecyclability = it },
+                    label = { Text("Recyclability") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp)
+                )
+
+                OutlinedTextField(
+                    value = packagingBiodegradability,
+                    onValueChange = { packagingBiodegradability = it },
+                    label = { Text("Biodegradability") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp)
+                )
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),

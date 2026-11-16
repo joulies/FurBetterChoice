@@ -1369,7 +1369,11 @@ class AppViewModel : ViewModel() {
             brand = result.brand.ifBlank { working.brands },
             pet = result.species.ifBlank { working.species },
             lifeStage = result.lifeStage.ifBlank { working.lifeStage },
-            foodType = result.foodType.ifBlank { working.foodType }
+            foodType = result.foodType.ifBlank { working.foodType },
+            packagingType = result.packagingType.ifBlank { working.packagingType },
+            packagingMaterial = result.packagingMaterial.ifBlank { working.packagingMaterial },
+            packagingRecyclability = result.packagingRecyclability.ifBlank { working.packagingRecyclability },
+            packagingBiodegradability = result.packagingBiodegradability.ifBlank { working.packagingBiodegradability }
         )
 
         val nextStep = when {
@@ -1611,7 +1615,11 @@ class AppViewModel : ViewModel() {
         imageUrl: String = "",
         nutritionPhotoUrl: String = "",
         ingredientsPhotoUrl: String = "",
-        barcodePhotoUrl: String = ""
+        barcodePhotoUrl: String = "",
+        packagingType: String = "",
+        packagingMaterial: String = "",
+        packagingRecyclability: String = "",
+        packagingBiodegradability: String = ""
     ) {
         val current = _scanSessionState.value
         if (current.baseDatabaseProduct != null) return
@@ -1626,7 +1634,11 @@ class AppViewModel : ViewModel() {
             imageUrl = imageUrl.trim().ifBlank { working.imageUrl.orEmpty() },
             nutritionPhotoUrl = nutritionPhotoUrl.trim(),
             ingredientsPhotoUrl = ingredientsPhotoUrl.trim(),
-            barcodePhotoUrl = barcodePhotoUrl.trim().ifBlank { working.barcodePhotoUrl.orEmpty() }
+            barcodePhotoUrl = barcodePhotoUrl.trim().ifBlank { working.barcodePhotoUrl.orEmpty() },
+            packagingType = packagingType.trim().ifBlank { working.packagingType },
+            packagingMaterial = packagingMaterial.trim().ifBlank { working.packagingMaterial },
+            packagingRecyclability = packagingRecyclability.trim().ifBlank { working.packagingRecyclability },
+            packagingBiodegradability = packagingBiodegradability.trim().ifBlank { working.packagingBiodegradability }
         )
         _scanSessionState.update {
             it.copy(
@@ -1927,7 +1939,11 @@ class AppViewModel : ViewModel() {
         ingredientsPhotoUrl: String = base.ingredientsPhotoUrl.orEmpty(),
         barcodePhotoUrl: String = base.barcodePhotoUrl.orEmpty(),
         metabolizableEnergy: Double? = base.metabolizableEnergy,
-        metabolizableEnergyUnit: String? = base.metabolizableEnergyUnit
+        metabolizableEnergyUnit: String? = base.metabolizableEnergyUnit,
+        packagingMaterial: String = base.packagingMaterial,
+        packagingType: String = base.packagingType,
+        packagingRecyclability: String = base.packagingRecyclability,
+        packagingBiodegradability: String = base.packagingBiodegradability
     ): Product {
         val cleanIngredients = LabelAiCorrectionService.filterIngredientInputText(ingredients)
         return Product(
@@ -1954,10 +1970,10 @@ class AppViewModel : ViewModel() {
             ingredients = cleanIngredients,
             ingredientsText = cleanIngredients,
             brandHistory = base.brandHistory,
-            packagingMaterial = base.packagingMaterial,
-            packagingType = base.packagingType,
-            packagingRecyclability = base.packagingRecyclability,
-            packagingBiodegradability = base.packagingBiodegradability,
+            packagingMaterial = packagingMaterial,
+            packagingType = packagingType,
+            packagingRecyclability = packagingRecyclability,
+            packagingBiodegradability = packagingBiodegradability,
             metabolizableEnergy = metabolizableEnergy,
             metabolizableEnergyUnit = metabolizableEnergyUnit
         )

@@ -22,6 +22,10 @@ data class ScannedFrontInfoResult(
     val species: String = "",
     val lifeStage: String = "",
     val foodType: String = "",
+    val packagingType: String = "",
+    val packagingMaterial: String = "",
+    val packagingRecyclability: String = "",
+    val packagingBiodegradability: String = "",
     val usedAi: Boolean = false
 )
 
@@ -72,7 +76,11 @@ object LabelAiCorrectionService {
                 "brand" to Schema.string("Brand name"),
                 "species" to Schema.enumeration(listOf("Dog", "Cat", ""), "Target species"),
                 "lifeStage" to Schema.enumeration(listOf("Adult", "Puppy", "Kitten", "Senior", "All Life Stages", ""), "Target life stage"),
-                "foodType" to Schema.enumeration(listOf("Dry Food", "Wet Food", "Treat", ""), "Food type")
+                "foodType" to Schema.enumeration(listOf("Dry Food", "Wet Food", "Treat", ""), "Food type"),
+                "packagingType" to Schema.enumeration(listOf("Can", "Pouch", "Bag", "Tub", "Tetra Pak", ""), "Packaging type (Can, Pouch, Bag, Tub, Tetra Pak)"),
+                "packagingMaterial" to Schema.string("Packaging material (e.g. Aluminum / Tin, Flexible Plastic / Foil, Paper / Cardboard)"),
+                "packagingRecyclability" to Schema.enumeration(listOf("Recyclable", "Difficult to Recycle", "Not Recyclable", ""), "Recyclability status"),
+                "packagingBiodegradability" to Schema.enumeration(listOf("Biodegradable", "Non-Biodegradable", ""), "Biodegradability status")
             )
         )
     }
@@ -213,13 +221,18 @@ object LabelAiCorrectionService {
                 model = frontGeminiModel,
                 prompt = """
                     You are parsing a dog or cat food package front label from a phone camera.
+                    Visually identify if the product is in a Can, Pouch, Bag, Tub, or Tetra Pak.
                     Fix any OCR spelling mistakes and return ONLY a JSON object with these keys:
                     {
                       "productName": string,
                       "brand": string,
                       "species": "Dog" | "Cat" | "",
                       "lifeStage": "Adult" | "Puppy" | "Kitten" | "Senior" | "All Life Stages" | "",
-                      "foodType": "Dry Food" | "Wet Food" | "Treat" | ""
+                      "foodType": "Dry Food" | "Wet Food" | "Treat" | "",
+                      "packagingType": "Can" | "Pouch" | "Bag" | "Tub" | "Tetra Pak" | "",
+                      "packagingMaterial": string,
+                      "packagingRecyclability": "Recyclable" | "Difficult to Recycle" | "Not Recyclable" | "",
+                      "packagingBiodegradability": "Biodegradable" | "Non-Biodegradable" | ""
                     }
                     Use empty string "" if unknown.
                     OCR text:
@@ -235,6 +248,10 @@ object LabelAiCorrectionService {
                     species = aiResult.optString("species"),
                     lifeStage = aiResult.optString("lifeStage"),
                     foodType = aiResult.optString("foodType"),
+                    packagingType = aiResult.optString("packagingType"),
+                    packagingMaterial = aiResult.optString("packagingMaterial"),
+                    packagingRecyclability = aiResult.optString("packagingRecyclability"),
+                    packagingBiodegradability = aiResult.optString("packagingBiodegradability"),
                     usedAi = true
                 )
             }
@@ -758,6 +775,30 @@ object LabelAiCorrectionService {
             lower.contains("dry") || lower.contains("kibble") -> "Dry Food"
             else -> ""
         }
+        val packagingType = when {
+            lower.contains("can") || lower.contains("canned") || lower.contains("tin") -> "Can"
+            lower.contains("pouch") || lower.contains("gravy") -> "Pouch"
+            lower.contains("bag") || lower.contains("kibble") || lower.contains("dry") -> "Bag"
+            lower.contains("tub") || lower.contains("cup") -> "Tub"
+            lower.contains("tetra") || lower.contains("carton") -> "Tetra Pak"
+            else -> if (foodType == "Wet Food") "Pouch" else if (foodType == "Dry Food") "Bag" else ""
+        }
+        val packagingMaterial = when (packagingType) {
+            "Can" -> "Aluminum / Tin"
+            "Pouch" -> "Flexible Plastic / Foil"
+            "Bag" -> "Plastic Film / Paper"
+            "Tub" -> "Plastic"
+            "Tetra Pak" -> "Cardboard / Composite"
+            else -> ""
+        }
+        val packagingRecyclability = when (packagingType) {
+            "Can" -> "Recyclable"
+            "Pouch", "Bag" -> "Difficult to Recycle"
+            "Tub", "Tetra Pak" -> "Recyclable"
+            else -> ""
+        }
+        val packagingBiodegradability = if (packagingType.isNotBlank()) "Non-Biodegradable" else ""
+
         val lines = raw.lines().map { it.trim() }.filter { it.length >= 3 }
         val brand = lines.firstOrNull().orEmpty().take(40)
         val productName = lines.drop(1).firstOrNull().orEmpty().take(60)
@@ -767,6 +808,10 @@ object LabelAiCorrectionService {
             species = species,
             lifeStage = lifeStage,
             foodType = foodType,
+            packagingType = packagingType,
+            packagingMaterial = packagingMaterial,
+            packagingRecyclability = packagingRecyclability,
+            packagingBiodegradability = packagingBiodegradability,
             usedAi = false
         )
     }

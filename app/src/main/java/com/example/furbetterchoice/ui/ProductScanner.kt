@@ -1042,10 +1042,11 @@ fun ProductScanner(
             pendingIngredientsPhotoUri = session.pendingIngredientsPhotoUri,
             pendingBarcodePhotoUri = session.pendingBarcodePhotoUri,
             onDismiss = { showEditInfoDialog = false },
-            onApply = { name, brand, pet, lifeStage, foodType, frontPhoto, nutPhoto, ingPhoto, barcodePhoto ->
+            onApply = { name, brand, pet, lifeStage, foodType, frontPhoto, nutPhoto, ingPhoto, barcodePhoto, pkgType, pkgMaterial, pkgRecyclability, pkgBiodegradability ->
                 viewModel.updateScannedProductInfo(
                     context, name, brand, pet, lifeStage, foodType,
-                    frontPhoto, nutPhoto, ingPhoto, barcodePhoto
+                    frontPhoto, nutPhoto, ingPhoto, barcodePhoto,
+                    pkgType, pkgMaterial, pkgRecyclability, pkgBiodegradability
                 )
                 showEditInfoDialog = false
             }
